@@ -12,7 +12,10 @@
         <class>org.platform_expertise_medicle.model.User</class>
         <class>org.platform_expertise_medicle.model.Visite</class>
         <class>org.platform_expertise_medicle.model.Consultations</class>
-        <class>org.platform_expertise_medicle.model.DemandesExpertise</class>
+        <class>org.platform_expertise_medicle.model.Crenau</class>
+        <class>org.platform_expertise_medicle.model.Infirmier</class>
+        <class>org.platform_expertise_medicle.model.MedecinSpecialiste</class>
+        <class>org.platform_expertise_medicle.model.SigneVitaux</class>
 
         <properties>
             <!-- Configuration de la base de données MySQL -->

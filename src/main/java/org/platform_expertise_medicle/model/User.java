@@ -1,9 +1,11 @@
 package org.platform_expertise_medicle.model;
-import org.platform_expertise_medicle.enums.*;
 
+import org.platform_expertise_medicle.enums.Role;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "users")
 public class User {
 
@@ -17,26 +19,23 @@ public class User {
     @Column(nullable = false)
     private String prenom;
 
-    @Column(unique = true ,nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Column(name = "mot_de_passe", nullable = false)
     private String motDePasse;
 
     @Enumerated(EnumType.STRING)
+    @Column(insertable = false, updatable = false)
     private Role role;
 
-    public User() {
+    public User() {}
 
-    }
-
-    public User(String nom, String prenom, String email, String motDePasse, Role role) {
+    public User(String nom, String prenom, String email, String motDePasse) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.motDePasse = motDePasse;
-        this.role = role;
-
     }
 
     public long getId() {

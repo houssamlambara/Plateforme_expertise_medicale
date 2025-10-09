@@ -15,8 +15,12 @@ public class Consultations {
     private Visite visite;
 
     @ManyToOne
-    @JoinColumn(name = "generaliste_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "specialiste_id", nullable = false)
+    private MedecinSpecialiste medecinSpecialiste;
+
+    @ManyToOne
+    @JoinColumn(name = "generaliste_id")
+    private MedecinGeneraliste medecinGeneraliste;
 
     private String motif;
     private String observations;
@@ -27,10 +31,9 @@ public class Consultations {
     private Double cout;
 
     @Column(nullable = false)
-    private String Statut;
+    private String statut;
 
-    public Consultations(){
-
+    public Consultations() {
     }
 
     public Long getId() {
@@ -49,12 +52,12 @@ public class Consultations {
         this.visite = visite;
     }
 
-    public User getUtilisateur() {
-        return user;
+    public MedecinSpecialiste getMedecinSpecialiste() {
+        return medecinSpecialiste;
     }
 
-    public void setUtilisateur(User user) {
-        this.user = user;
+    public void setMedecinSpecialiste(MedecinSpecialiste medecinSpecialiste) {
+        this.medecinSpecialiste = medecinSpecialiste;
     }
 
     public String getMotif() {
@@ -98,10 +101,10 @@ public class Consultations {
     }
 
     public String getStatut() {
-        return Statut;
+        return statut;
     }
 
     public void setStatut(String statut) {
-        Statut = statut;
+        this.statut = statut;
     }
 }
