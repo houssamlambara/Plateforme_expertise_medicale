@@ -15,6 +15,7 @@
         <class>org.platform_expertise_medicle.model.Crenau</class>
         <class>org.platform_expertise_medicle.model.Infirmier</class>
         <class>org.platform_expertise_medicle.model.MedecinSpecialiste</class>
+        <class>org.platform_expertise_medicle.model.MedecinGeneraliste</class>
         <class>org.platform_expertise_medicle.model.SigneVitaux</class>
 
         <properties>

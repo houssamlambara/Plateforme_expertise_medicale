@@ -27,9 +27,7 @@ public class AddPatientServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // On met tout le bloc dans un try-catch pour gérer les erreurs proprement
         try {
-            // --- PARTIE 1 : RÉCUPÉRATION ET CRÉATION DU PATIENT ---
 
             // On récupère les données du formulaire pour le patient
             String nom = request.getParameter("nom");
@@ -39,7 +37,6 @@ public class AddPatientServlet extends HttpServlet {
             String telephone = request.getParameter("telephone");
             String adresse = request.getParameter("adresse");
 
-            // Validation simple
             if (nom == null || nom.isEmpty() || prenom == null || prenom.isEmpty() || dateNaissanceStr == null || dateNaissanceStr.isEmpty() || numeroSecuriteSociale == null || numeroSecuriteSociale.isEmpty()) {
                 request.setAttribute("error", "Les champs du patient marqués d'une * sont obligatoires.");
                 doGet(request, response);
@@ -49,7 +46,6 @@ public class AddPatientServlet extends HttpServlet {
             // Conversion de la date
             Date dateNaissance = new SimpleDateFormat("yyyy-MM-dd").parse(dateNaissanceStr);
 
-            // On crée l'objet Patient avec les données récupérées
             Patient nouveauPatient = new Patient(nom, prenom, dateNaissance, numeroSecuriteSociale, telephone, adresse);
 
             // On sauvegarde le patient

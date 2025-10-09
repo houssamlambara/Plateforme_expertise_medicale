@@ -18,7 +18,6 @@ public class SigneVitaux {
     private int frequenceRespiratoire;
     private double poids;
     private double taille;
-    private LocalDateTime dateMesure;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
@@ -34,7 +33,6 @@ public class SigneVitaux {
         this.frequenceRespiratoire = frequenceRespiratoire;
         this.poids = poids;
         this.taille = taille;
-        this.dateMesure = LocalDateTime.now();
         this.patient = patient;
     }
 
@@ -92,14 +90,6 @@ public class SigneVitaux {
 
     public void setTaille(double taille) {
         this.taille = taille;
-    }
-
-    public LocalDateTime getDateMesure() {
-        return dateMesure;
-    }
-
-    public void setDateMesure(LocalDateTime dateMesure) {
-        this.dateMesure = dateMesure;
     }
 
     public Patient getPatient() {
