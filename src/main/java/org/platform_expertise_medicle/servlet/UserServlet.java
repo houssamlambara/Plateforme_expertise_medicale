@@ -50,7 +50,7 @@ public class UserServlet extends HttpServlet {
                 if (user.getRole() != null) {
                     switch (user.getRole()) {
                         case INFERMIER:
-                            dashboardUrl = "/infermier/dashboard.jsp";
+                            dashboardUrl = "/infirmier/dashboard.jsp";
                             break;
                         case GENERALISTE:
                             dashboardUrl = "/generaliste/dashboard.jsp";

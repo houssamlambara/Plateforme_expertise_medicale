@@ -12,7 +12,7 @@ public class SigneVitaux {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private double tensionArterielle;
+    private String tensionArterielle;
     private int frequenceCardiaque;
     private double temperature;
     private int frequenceRespiratoire;
@@ -26,7 +26,7 @@ public class SigneVitaux {
 
     public SigneVitaux() {}
 
-    public SigneVitaux(double tensionArterielle, int frequenceCardiaque, double temperature, int frequenceRespiratoire,
+    public SigneVitaux(String tensionArterielle, int frequenceCardiaque, double temperature, int frequenceRespiratoire,
                       double poids, double taille, Patient patient) {
         this.tensionArterielle = tensionArterielle;
         this.frequenceCardiaque = frequenceCardiaque;
@@ -46,11 +46,11 @@ public class SigneVitaux {
         this.id = id;
     }
 
-    public double getTensionArterielle() {
+    public String getTensionArterielle() {
         return tensionArterielle;
     }
 
-    public void setTensionArterielle(double tensionArterielle) {
+    public void setTensionArterielle(String tensionArterielle) {
         this.tensionArterielle = tensionArterielle;
     }
 

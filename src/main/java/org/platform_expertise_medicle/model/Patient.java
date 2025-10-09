@@ -66,11 +66,11 @@ public class Patient {
         this.prenom = prenom;
     }
 
-    public Date getDate_naissance() {
+    public Date getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDate_naissance(Date date_naissance) {
+    public void setDateNaissance(Date date_naissance) {
         this.dateNaissance = date_naissance;
     }
 
