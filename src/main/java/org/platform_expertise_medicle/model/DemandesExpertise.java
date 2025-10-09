@@ -17,7 +17,7 @@ public class DemandesExpertise {
 
     @ManyToOne
     @JoinColumn(name = "specialiste_id", nullable = false)
-    private Utilisateur specialiste;
+    private User specialiste;
 
     @Column(nullable = false)
     private String question;
@@ -53,11 +53,11 @@ public class DemandesExpertise {
         this.consultations = consultation;
     }
 
-    public Utilisateur getSpecialiste() {
+    public User getSpecialiste() {
         return specialiste;
     }
 
-    public void setSpecialiste(Utilisateur specialiste) {
+    public void setSpecialiste(User specialiste) {
         this.specialiste = specialiste;
     }
 

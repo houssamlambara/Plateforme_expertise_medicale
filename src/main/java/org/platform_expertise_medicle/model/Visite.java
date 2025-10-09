@@ -17,7 +17,7 @@ public class Visite {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "infirmier_id")
-    private Utilisateur infirmier;
+    private User infirmier;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_arrivee", nullable = false)
@@ -61,11 +61,11 @@ public class Visite {
         this.patient = patient;
     }
 
-    public Utilisateur getInfirmier() {
+    public User getInfirmier() {
         return infirmier;
     }
 
-    public void setInfirmier(Utilisateur infirmier) {
+    public void setInfirmier(User infirmier) {
         this.infirmier = infirmier;
     }
 

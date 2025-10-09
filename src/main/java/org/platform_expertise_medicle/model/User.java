@@ -1,10 +1,11 @@
 package org.platform_expertise_medicle.model;
+import org.platform_expertise_medicle.enums.*;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "utilisateurs")
-public class Utilisateur {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +23,14 @@ public class Utilisateur {
     @Column(name = "mot_de_passe", nullable = false)
     private String motDePasse;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
-    public  Utilisateur() {
+    public User() {
 
     }
 
-    public Utilisateur(String nom, String prenom, String email, String motDePasse, Role role) {
+    public User(String nom, String prenom, String email, String motDePasse, Role role) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;

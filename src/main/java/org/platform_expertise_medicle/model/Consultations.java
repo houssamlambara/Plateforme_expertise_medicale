@@ -16,7 +16,7 @@ public class Consultations {
 
     @ManyToOne
     @JoinColumn(name = "generaliste_id", nullable = false)
-    private Utilisateur utilisateur;
+    private User user;
 
     private String motif;
     private String observations;
@@ -49,12 +49,12 @@ public class Consultations {
         this.visite = visite;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public User getUtilisateur() {
+        return user;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setUtilisateur(User user) {
+        this.user = user;
     }
 
     public String getMotif() {

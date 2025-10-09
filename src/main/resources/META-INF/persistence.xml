@@ -9,19 +9,17 @@
         
         <!-- Entités JPA -->
         <class>org.platform_expertise_medicle.model.Patient</class>
-        <class>org.platform_expertise_medicle.model.Utilisateur</class>
-        <class>org.platform_expertise_medicle.model.Role</class>
+        <class>org.platform_expertise_medicle.model.User</class>
         <class>org.platform_expertise_medicle.model.Visite</class>
         <class>org.platform_expertise_medicle.model.Consultations</class>
         <class>org.platform_expertise_medicle.model.DemandesExpertise</class>
-        <class>org.platform_expertise_medicle.model.Creneau</class>
-        
+
         <properties>
             <!-- Configuration de la base de données MySQL -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/platform_expertise_medicale?useSSL=false&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/plateforme_expertise_medicale?useSSL=false&amp;serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value=""/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
             
             <!-- Configuration Hibernate -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
