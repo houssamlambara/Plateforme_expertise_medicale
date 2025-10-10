@@ -29,5 +29,15 @@ public class PatientDAO {
         }
     }
 
+    public List<Patient> findAll() {
+        EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            String jpql = "SELECT p FROM Patient p ORDER BY p.nom, p.prenom";
+            TypedQuery<Patient> query = em.createQuery(jpql, Patient.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 
 }
