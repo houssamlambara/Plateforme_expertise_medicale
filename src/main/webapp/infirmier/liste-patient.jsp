@@ -51,7 +51,7 @@
                 <a href="<%= request.getContextPath() %>/infirmier/dashboard" class="text-white hover:text-gray-200">
                     <i class="fas fa-arrow-left"></i>
                 </a>
-                <h1 class="text-2xl font-bold">🏥 Liste des Patients</h1>
+                <h1 class="text-2xl font-bold">Liste des Patients</h1>
             </div>
             <div class="flex items-center space-x-4">
                 <span class="text-sm font-medium"><%= userName %></span>
@@ -143,12 +143,12 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div class="flex justify-end space-x-3">
-                            <a href="<%= request.getContextPath() %>/infirmier/patient/details?id=<%= patient.getId() %>"
+                            <a href="<%= request.getContextPath() %>/infirmier/details?id=<%= patient.getId() %>"
                                class="text-primary-600 hover:text-primary-900">
                                 <i class="far fa-eye"></i>
                                 <span class="sr-only">Voir</span>
                             </a>
-                            <a href="<%= request.getContextPath() %>/infirmier/patient/modifier?id=<%= patient.getId() %>"
+                            <a href="<%= request.getContextPath() %>/infirmier/modifier?id=<%= patient.getId() %>"
                                class="text-blue-600 hover:text-blue-900">
                                 <i class="far fa-edit"></i>
                                 <span class="sr-only">Modifier</span>

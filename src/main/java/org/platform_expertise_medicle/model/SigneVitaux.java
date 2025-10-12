@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "SigneViteaux")
-
+@Table(name = "signes_vitaux")
 public class SigneVitaux {
 
     @Id
@@ -23,17 +22,14 @@ public class SigneVitaux {
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    public SigneVitaux() {}
+    @Column(nullable = false)
+    private String statut;
 
-    public SigneVitaux(String tensionArterielle, int frequenceCardiaque, double temperature, int frequenceRespiratoire,
-                      double poids, double taille, Patient patient) {
-        this.tensionArterielle = tensionArterielle;
-        this.frequenceCardiaque = frequenceCardiaque;
-        this.temperature = temperature;
-        this.frequenceRespiratoire = frequenceRespiratoire;
-        this.poids = poids;
-        this.taille = taille;
-        this.patient = patient;
+    @Column(nullable = false)
+    private LocalDateTime dateMesure;
+
+    public SigneVitaux() {
+        this.dateMesure = LocalDateTime.now();
     }
 
     public long getId() {
@@ -98,5 +94,21 @@ public class SigneVitaux {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
+    public LocalDateTime getDateMesure() {
+        return dateMesure;
+    }
+
+    public void setDateMesure(LocalDateTime dateMesure) {
+        this.dateMesure = dateMesure;
     }
 }

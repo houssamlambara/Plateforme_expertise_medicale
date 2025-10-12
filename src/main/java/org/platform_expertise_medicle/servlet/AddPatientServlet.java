@@ -1,4 +1,4 @@
-package org.platform_expertise_medicle.servlet; // ou votre package de servlets
+package org.platform_expertise_medicle.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,6 +12,7 @@ import org.platform_expertise_medicle.model.SigneVitaux;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime; // Importer LocalDateTime
 import java.util.Date;
 
 @WebServlet("/infirmier/ajouter-patient")
@@ -28,8 +29,7 @@ public class AddPatientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
-            // On récupère les données du formulaire pour le patient
+            // --- PARTIE 1 : CRÉATION DU PATIENT ---
             String nom = request.getParameter("nom");
             String prenom = request.getParameter("prenom");
             String dateNaissanceStr = request.getParameter("dateNaissance");
@@ -37,53 +37,54 @@ public class AddPatientServlet extends HttpServlet {
             String telephone = request.getParameter("telephone");
             String adresse = request.getParameter("adresse");
 
-            if (nom == null || nom.isEmpty() || prenom == null || prenom.isEmpty() || dateNaissanceStr == null || dateNaissanceStr.isEmpty() || numeroSecuriteSociale == null || numeroSecuriteSociale.isEmpty()) {
+            if (nom.isEmpty() || prenom.isEmpty() || dateNaissanceStr.isEmpty() || numeroSecuriteSociale.isEmpty()) {
                 request.setAttribute("error", "Les champs du patient marqués d'une * sont obligatoires.");
                 doGet(request, response);
                 return;
             }
 
-            // Conversion de la date
             Date dateNaissance = new SimpleDateFormat("yyyy-MM-dd").parse(dateNaissanceStr);
-
             Patient nouveauPatient = new Patient(nom, prenom, dateNaissance, numeroSecuriteSociale, telephone, adresse);
-
-            // On sauvegarde le patient
             patientDAO.save(nouveauPatient);
 
-            // --- PARTIE 2 : RÉCUPÉRATION ET CRÉATION DES SIGNES VITAUX ---
+            // --- PARTIE 2 : CRÉATION DES SIGNES VITAUX (LA VISITE) ---
+            SigneVitaux nouveauxSignes = new SigneVitaux();
 
+            // Récupération des données du formulaire
             String temperatureStr = request.getParameter("temperature");
             String poidsStr = request.getParameter("poids");
             String tailleStr = request.getParameter("taille");
-            String tensionArterielle = request.getParameter("tensionArterielle");
             String frequenceCardiaqueStr = request.getParameter("frequenceCardiaque");
             String frequenceRespiratoireStr = request.getParameter("frequenceRespiratoire");
 
-            SigneVitaux nouveauxSignes = new SigneVitaux();
-
-            // On remplit l'objet SigneVitaux en vérifiant que les valeurs ne sont pas vides
+            // Assignation des valeurs à l'objet
             if (temperatureStr != null && !temperatureStr.isEmpty()) nouveauxSignes.setTemperature(Double.parseDouble(temperatureStr));
             if (poidsStr != null && !poidsStr.isEmpty()) nouveauxSignes.setPoids(Double.parseDouble(poidsStr));
             if (tailleStr != null && !tailleStr.isEmpty()) nouveauxSignes.setTaille(Double.parseDouble(tailleStr));
             if (frequenceCardiaqueStr != null && !frequenceCardiaqueStr.isEmpty()) nouveauxSignes.setFrequenceCardiaque(Integer.parseInt(frequenceCardiaqueStr));
             if (frequenceRespiratoireStr != null && !frequenceRespiratoireStr.isEmpty()) nouveauxSignes.setFrequenceRespiratoire(Integer.parseInt(frequenceRespiratoireStr));
+            nouveauxSignes.setTensionArterielle(request.getParameter("tensionArterielle"));
 
-            nouveauxSignes.setTensionArterielle(tensionArterielle);
-
+            // --- AJOUTS IMPORTANTS POUR LA FILE D'ATTENTE ---
+            // 1. On lie la mesure au patient que l'on vient de créer
             nouveauxSignes.setPatient(nouveauPatient);
+            // 2. On définit le statut pour la file d'attente
+            nouveauxSignes.setStatut("EN_ATTENTE");
+            // 3. On enregistre l'heure exacte de la mesure pour pouvoir trier la file
+            nouveauxSignes.setDateMesure(LocalDateTime.now());
+            // ----------------------------------------------------
 
+            // On sauvegarde l'objet SigneVitaux complet
             signeVitauxDAO.save(nouveauxSignes);
 
-            // Si tout s'est bien passé, on affiche le message de succès
-            request.setAttribute("success", "Le patient et sa visite ont été enregistrés avec succès !");
+            // Message de succès mis à jour
+            request.setAttribute("success", "Le patient a été ajouté à la file d'attente avec succès !");
 
         } catch (Exception e) {
-            e.printStackTrace(); // Affiche l'erreur complète dans la console Tomcat (très utile pour déboguer)
+            e.printStackTrace();
             request.setAttribute("error", "Une erreur est survenue lors de l'enregistrement : " + e.getMessage());
         }
 
-        // Dans tous les cas (succès ou erreur), on ré-affiche le formulaire
         doGet(request, response);
     }
 }

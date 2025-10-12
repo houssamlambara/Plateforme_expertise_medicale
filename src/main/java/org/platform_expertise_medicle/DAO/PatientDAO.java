@@ -40,4 +40,30 @@ public class PatientDAO {
         }
     }
 
+    public Patient findById(long id) {
+        EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            return em.find(Patient.class, id);
+        } finally {
+            em.close();
+        }
+    }
+
+    public void update(Patient patient) {
+        EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.merge(patient);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
 }

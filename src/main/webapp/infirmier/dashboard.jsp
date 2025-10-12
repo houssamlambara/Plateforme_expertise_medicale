@@ -32,40 +32,6 @@
 
 <!-- Main Content -->
 <main class="container mx-auto px-6 py-8">
-    <!-- Stats Grid -->
-<%--    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">--%>
-<%--        <!-- Stat Card 1 -->--%>
-<%--        <div class="bg-white rounded-xl shadow-md p-6 flex items-center gap-4">--%>
-<%--            <div>--%>
-<%--                <h3 class="text-3xl font-bold text-gray-800">12</h3>--%>
-<%--                <p class="text-gray-600 text-sm">Visites aujourd'hui</p>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <!-- Stat Card 2 -->--%>
-<%--        <div class="bg-white rounded-xl shadow-md p-6 flex items-center gap-4">--%>
-<%--            <div>--%>
-<%--                <h3 class="text-3xl font-bold text-gray-800">5</h3>--%>
-<%--                <p class="text-gray-600 text-sm">En attente</p>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <!-- Stat Card 3 -->--%>
-<%--        <div class="bg-white rounded-xl shadow-md p-6 flex items-center gap-4">--%>
-<%--            <div>--%>
-<%--                <h3 class="text-3xl font-bold text-gray-800">7</h3>--%>
-<%--                <p class="text-gray-600 text-sm">Terminées</p>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <!-- Stat Card 4 -->--%>
-<%--        <div class="bg-white rounded-xl shadow-md p-6 flex items-center gap-4">--%>
-<%--            <div>--%>
-<%--                <h3 class="text-3xl font-bold text-gray-800">45</h3>--%>
-<%--                <p class="text-gray-600 text-sm">Patients total</p>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
 
     <!-- Actions Section -->
     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
