@@ -21,7 +21,7 @@
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">🏥 Ajouter un Patient</h1>
         <div class="flex items-center gap-4">
-            <a href="<%= request.getContextPath() %>/infermier/dashboard.jsp" 
+            <a href="<%= request.getContextPath() %>/infermier/dashboard.jsp"
                class="text-sm hover:underline">← Retour au dashboard</a>
             <span class="text-sm"><%= userName != null ? userName : userEmail %></span>
         </div>
@@ -37,7 +37,7 @@
                 <%= request.getAttribute("error") %>
             </div>
         <% } %>
-        
+
         <% if (request.getAttribute("success") != null) { %>
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-6">
                 <%= request.getAttribute("success") %>
@@ -47,7 +47,7 @@
         <!-- Formulaire -->
         <div class="bg-white rounded-xl shadow-md p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Informations du Patient</h2>
-            
+
             <form action="<%= request.getContextPath() %>/infirmier/ajouter-patient" method="post" class="space-y-6">
                 <!-- Nom et Prénom -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -59,7 +59,7 @@
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                placeholder="Nom du patient">
                     </div>
-                    
+
                     <div>
                         <label for="prenom" class="block text-sm font-semibold text-gray-700 mb-2">
                             Prénom <span class="text-red-500">*</span>
@@ -79,7 +79,7 @@
                         <input type="date" id="dateNaissance" name="dateNaissance" required
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
                     </div>
-                    
+
                     <div>
                         <label for="sexe" class="block text-sm font-semibold text-gray-700 mb-2">
                             Sexe <span class="text-red-500">*</span>
@@ -113,7 +113,7 @@
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                placeholder="Ex: 06 12 34 56 78">
                     </div>
-                    
+
                     <div>
                         <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
                             Email
@@ -153,7 +153,7 @@
                             <option value="O-">O-</option>
                         </select>
                     </div>
-                    
+
                     <div>
                         <label for="allergies" class="block text-sm font-semibold text-gray-700 mb-2">
                             Allergies connues
