@@ -24,6 +24,10 @@
             <a href="<%= request.getContextPath() %>/infermier/dashboard.jsp"
                class="text-sm hover:underline">← Retour au dashboard</a>
             <span class="text-sm"><%= userName != null ? userName : userEmail %></span>
+            <a href="<%= request.getContextPath() %>/logout"
+               class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">
+                Déconnexion
+            </a>
         </div>
     </div>
 </header>

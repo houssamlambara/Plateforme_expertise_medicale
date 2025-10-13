@@ -22,7 +22,7 @@
         <h1 class="text-2xl font-bold">🏥 Dashboard Infirmier</h1>
         <div class="flex items-center gap-4">
             <span class="text-sm"><%= userName != null ? userName : userEmail %></span>
-            <a href="<%= request.getContextPath() %>/auth/logout"
+            <a href="<%= request.getContextPath() %>/logout"
                class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">
                 Déconnexion
             </a>

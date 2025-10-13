@@ -11,7 +11,7 @@
         <class>org.platform_expertise_medicle.model.Patient</class>
         <class>org.platform_expertise_medicle.model.User</class>
         <class>org.platform_expertise_medicle.model.Visite</class>
-        <class>org.platform_expertise_medicle.model.Consultations</class>
+        <class>org.platform_expertise_medicle.model.Consultation</class>
         <class>org.platform_expertise_medicle.model.Crenau</class>
         <class>org.platform_expertise_medicle.model.Infirmier</class>
         <class>org.platform_expertise_medicle.model.MedecinSpecialiste</class>

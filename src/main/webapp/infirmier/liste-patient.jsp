@@ -55,7 +55,7 @@
             </div>
             <div class="flex items-center space-x-4">
                 <span class="text-sm font-medium"><%= userName %></span>
-                <a href="<%= request.getContextPath() %>/auth/logout"
+                <a href="<%= request.getContextPath() %>/logout"
                    class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
                     <i class="fas fa-sign-out-alt mr-1"></i> Deconnexion
                 </a>
@@ -107,13 +107,6 @@
                 <tbody class="bg-white divide-y divide-gray-200" id="patientsTableBody">
                 <% if (patients != null && !patients.isEmpty()) {
                     for (Patient patient : patients) {
-                        Calendar dob = Calendar.getInstance();
-                        dob.setTime(patient.getDateNaissance());
-                        Calendar now = Calendar.getInstance();
-                        int age = now.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-                        if (now.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
-                            age--;
-                        }
                 %>
                 <tr class="hover:bg-gray-50 transition-colors duration-150">
                     <td class="px-6 py-4 whitespace-nowrap">
@@ -135,7 +128,6 @@
                         <div class="text-sm text-gray-900">
                             <%= dateFormat.format(patient.getDateNaissance()) %>
                         </div>
-                        <div class="text-sm text-gray-500"><%= age %> ans</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900"><%= patient.getTelephone() %></div>

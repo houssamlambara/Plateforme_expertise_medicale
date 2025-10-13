@@ -2,6 +2,7 @@ package org.platform_expertise_medicle.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "signes_vitaux")
@@ -28,87 +29,56 @@ public class SigneVitaux {
     @Column(nullable = false)
     private LocalDateTime dateMesure;
 
+    @Transient
+    private String formattedDate;
+
     public SigneVitaux() {
         this.dateMesure = LocalDateTime.now();
     }
 
-    public long getId() {
-        return id;
+    public void prepareFormattedDate() {
+        if (this.dateMesure != null) {
+            this.formattedDate = this.dateMesure.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        }
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
-    public String getTensionArterielle() {
-        return tensionArterielle;
-    }
+    public String getTensionArterielle() { return tensionArterielle; }
+    public void setTensionArterielle(String tensionArterielle) { this.tensionArterielle = tensionArterielle; }
 
-    public void setTensionArterielle(String tensionArterielle) {
-        this.tensionArterielle = tensionArterielle;
-    }
+    public int getFrequenceCardiaque() { return frequenceCardiaque; }
+    public void setFrequenceCardiaque(int frequenceCardiaque) { this.frequenceCardiaque = frequenceCardiaque; }
 
-    public int getFrequenceCardiaque() {
-        return frequenceCardiaque;
-    }
+    public double getTemperature() { return temperature; }
+    public void setTemperature(double temperature) { this.temperature = temperature; }
 
-    public void setFrequenceCardiaque(int frequenceCardiaque) {
-        this.frequenceCardiaque = frequenceCardiaque;
-    }
+    public int getFrequenceRespiratoire() { return frequenceRespiratoire; }
+    public void setFrequenceRespiratoire(int frequenceRespiratoire) { this.frequenceRespiratoire = frequenceRespiratoire; }
 
-    public double getTemperature() {
-        return temperature;
-    }
+    public double getPoids() { return poids; }
+    public void setPoids(double poids) { this.poids = poids; }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
+    public double getTaille() { return taille; }
+    public void setTaille(double taille) { this.taille = taille; }
 
-    public int getFrequenceRespiratoire() {
-        return frequenceRespiratoire;
-    }
+    public Patient getPatient() { return patient; }
+    public void setPatient(Patient patient) { this.patient = patient; }
 
-    public void setFrequenceRespiratoire(int frequenceRespiratoire) {
-        this.frequenceRespiratoire = frequenceRespiratoire;
-    }
+    public String getStatut() { return statut; }
+    public void setStatut(String statut) { this.statut = statut; }
 
-    public double getPoids() {
-        return poids;
-    }
+    public LocalDateTime getDateMesure() { return dateMesure; }
+    public void setDateMesure(LocalDateTime dateMesure) { this.dateMesure = dateMesure; }
 
-    public void setPoids(double poids) {
-        this.poids = poids;
+    @Transient
+    public String getFormattedDate() {
+        if(this.dateMesure != null) {
+            return this.dateMesure.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        }
+        return "";
     }
-
-    public double getTaille() {
-        return taille;
-    }
-
-    public void setTaille(double taille) {
-        this.taille = taille;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    public String getStatut() {
-        return statut;
-    }
-
-    public void setStatut(String statut) {
-        this.statut = statut;
-    }
-
-    public LocalDateTime getDateMesure() {
-        return dateMesure;
-    }
-
-    public void setDateMesure(LocalDateTime dateMesure) {
-        this.dateMesure = dateMesure;
-    }
+    public void setFormattedDate(String formattedDate) {
+        this.formattedDate = formattedDate; }
 }

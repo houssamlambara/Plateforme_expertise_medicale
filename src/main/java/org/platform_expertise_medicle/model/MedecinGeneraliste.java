@@ -8,16 +8,16 @@ import java.util.List;
 @DiscriminatorValue("GENERALISTE")
 public class MedecinGeneraliste extends User {
 
-    @OneToMany(mappedBy = "medecinGeneraliste")
-    private List<Consultations> consultations = new ArrayList<>();
+    @OneToMany(mappedBy = "generaliste")
+    private List<Consultation> consultations = new ArrayList<>();
 
     public MedecinGeneraliste() {}
 
-    public List<Consultations> getConsultations() {
+    public List<Consultation> getConsultations() {
         return consultations;
     }
 
-    public void setConsultations(List<Consultations> consultations) {
+    public void setConsultations(List<Consultation> consultations) {
         this.consultations = consultations;
     }
 }

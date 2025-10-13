@@ -9,15 +9,15 @@ import java.util.List;
 public class MedecinSpecialiste extends User {
 
     @OneToMany(mappedBy = "medecinSpecialiste")
-    private List<Consultations> consultations = new ArrayList<>();
+    private List<Consultation> consultations = new ArrayList<>();
 
     public MedecinSpecialiste() {}
 
-    public List<Consultations> getConsultations() {
+    public List<Consultation> getConsultations() {
         return consultations;
     }
 
-    public void setConsultations(List<Consultations> consultations) {
+    public void setConsultations(List<Consultation> consultations) {
         this.consultations = consultations;
     }
 }

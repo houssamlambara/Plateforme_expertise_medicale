@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/auth/logout")
+@WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 
     @Override
@@ -18,7 +18,6 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
-
         response.sendRedirect(request.getContextPath() + "/auth/login");
     }
 }

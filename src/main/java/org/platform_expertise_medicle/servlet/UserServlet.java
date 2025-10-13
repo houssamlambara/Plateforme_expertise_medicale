@@ -53,7 +53,7 @@ public class UserServlet extends HttpServlet {
                             dashboardUrl = "/infirmier/dashboard.jsp";
                             break;
                         case GENERALISTE:
-                            dashboardUrl = "/generaliste/dashboard.jsp";
+                            dashboardUrl = "/generaliste/dashboard";
                             break;
                         case SPECIALISTE:
                             dashboardUrl = "/specialiste/dashboard.jsp";
