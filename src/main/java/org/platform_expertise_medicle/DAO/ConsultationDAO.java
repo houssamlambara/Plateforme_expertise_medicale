@@ -64,16 +64,14 @@ public class ConsultationDAO {
         }
     }
 
-    // ✅ Récupérer les consultations d’un médecin généraliste
-    public List<Consultation> findByGeneraliste(MedecinGeneraliste generaliste) {
+    public List<Consultation> findByGeneralisteId(long generalisteId) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
-            TypedQuery<Consultation> query = em.createQuery(
-                    "SELECT c FROM Consultation c WHERE c.generaliste = :generaliste ORDER BY c.dateConsultation DESC",
-                    Consultation.class
-            );
-            query.setParameter("generaliste", generaliste);
-            return query.getResultList();
+            return em.createQuery(
+                            "SELECT c FROM Consultation c WHERE c.generaliste.id = :genId ORDER BY c.dateConsultation DESC",
+                            Consultation.class)
+                    .setParameter("genId", generalisteId)
+                    .getResultList();
         } finally {
             em.close();
         }

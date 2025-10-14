@@ -6,8 +6,6 @@
         response.sendRedirect(request.getContextPath() + "/auth/login");
         return;
     }
-    String userEmail = (String) session.getAttribute("userEmail");
-    String userName = (String) session.getAttribute("userName");
 %>
 
 <!DOCTYPE html>
@@ -15,16 +13,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Généraliste</title>
+    <title>Historique des Consultations</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
 
 <header class="bg-gradient-to-r from-green-600 to-green-800 text-white shadow-lg">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold">🩺 Dashboard Généraliste</h1>
+        <h1 class="text-2xl font-bold">🩺 Historique des Consultations</h1>
         <div class="flex items-center gap-4">
-            <span class="text-sm">👨‍⚕️ Dr. <%= userName != null ? userName : userEmail %></span>
+            <a href="${pageContext.request.contextPath}/generaliste/dashboard"
+               class="text-sm hover:underline">← Retour au dashboard</a>
+            <span class="text-sm">👨‍⚕️ Dr. ${sessionScope.userName}</span>
             <a href="${pageContext.request.contextPath}/logout"
                class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">
                 Déconnexion
@@ -34,59 +34,55 @@
 </header>
 
 <main class="container mx-auto px-6 py-8">
+    <div class="bg-white rounded-xl shadow-md p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-6">Toutes les consultations</h2>
 
-    <!-- 🔹 Actions rapides -->
-    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
-        <h2 class="text-xl font-bold text-gray-800 mb-6">Actions Rapides</h2>
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
-            <a href="${pageContext.request.contextPath}/generaliste/historique-consultations"
-               class="bg-gradient-to-r from-green-600 to-green-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
-                Historique des Consultations
-            </a>
-        </div>
-    </div>
-
-    <!-- 🔹 File d'attente des patients -->
-    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
-        <h2 class="text-xl font-bold text-gray-800 mb-6">File d'attente des patients</h2>
         <div class="overflow-x-auto">
             <table class="w-full">
                 <thead class="bg-gray-50 border-b">
                 <tr>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Patient</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Arrivée</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Date</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Statut</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
 
-                <c:forEach items="${fileDAttente}" var="visite">
+                <c:forEach items="${consultations}" var="c">
                     <tr class="hover:bg-gray-50 transition">
                         <td class="px-6 py-4 text-sm text-gray-800 font-medium">
-                                ${visite.patient.prenom} ${visite.patient.nom}
+                                ${c.patient.prenom} ${c.patient.nom}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-600">
-                                ${visite.formattedDate}
+                                ${c.dateConsultation}
                         </td>
                         <td class="px-6 py-4">
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">
-                                En attente
-                            </span>
+                            <c:choose>
+                                <c:when test="${c.statut == 'TERMINEE'}">
+                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Terminée</span>
+                                </c:when>
+                                <c:when test="${c.statut == 'EN_ATTENTE_AVIS_SPECIALISTE'}">
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">En attente spécialiste</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">En cours</span>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                         <td class="px-6 py-4">
-                            <a href="${pageContext.request.contextPath}/generaliste/cree-consultation?patientId=${visite.patient.id}"
+                            <a href="${pageContext.request.contextPath}/generaliste/cree-consultation?patientId=${c.patient.id}&consultationId=${c.id}"
                                class="text-green-600 hover:text-green-800 font-medium text-sm">
-                                Créer Consultation
+                                Voir / Modifier
                             </a>
                         </td>
                     </tr>
                 </c:forEach>
 
-                <c:if test="${empty fileDAttente}">
+                <c:if test="${empty consultations}">
                     <tr>
                         <td colspan="4" class="px-6 py-4 text-center text-gray-500">
-                            Aucun patient en attente pour le moment.
+                            Aucune consultation trouvée.
                         </td>
                     </tr>
                 </c:if>
@@ -95,7 +91,7 @@
             </table>
         </div>
     </div>
-
 </main>
+
 </body>
 </html>
