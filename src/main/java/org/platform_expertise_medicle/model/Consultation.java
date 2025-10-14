@@ -11,14 +11,17 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @OneToOne
-//    @JoinColumn(name = "visite_id", nullable = false, unique = true)
-//    private SigneVitaux visite;
+    // 🔹 Le patient lié à la consultation
+    @ManyToOne
+    @JoinColumn(name = "patient_id", nullable = false)
+    private Patient patient;
 
+    // 🔹 Le généraliste
     @ManyToOne
     @JoinColumn(name = "generaliste_id")
     private MedecinGeneraliste generaliste;
 
+    // 🔹 Le spécialiste (optionnel)
     @ManyToOne
     @JoinColumn(name = "specialiste_id", nullable = true)
     private MedecinSpecialiste medecinSpecialiste;
@@ -54,6 +57,14 @@ public class Consultation {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public MedecinGeneraliste getGeneraliste() {
