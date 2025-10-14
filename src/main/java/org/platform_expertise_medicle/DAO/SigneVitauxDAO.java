@@ -52,7 +52,7 @@ public class SigneVitauxDAO {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
             TypedQuery<SigneVitaux> query = em.createQuery(
-                    "SELECT sv FROM SigneVitaux sv WHERE sv.statut = :statut ORDER BY sv.dateMesure ASC",
+                    "SELECT sv FROM SigneVitaux sv WHERE sv.statut = :statut ORDER BY sv.dateMesure DESC",
                     SigneVitaux.class
             );
             query.setParameter("statut", statut);

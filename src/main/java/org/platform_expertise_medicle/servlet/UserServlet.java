@@ -54,13 +54,13 @@ public class UserServlet extends HttpServlet {
                 if (user.getRole() != null) {
                     switch (user.getRole()) {
                         case INFERMIER:
-                            dashboardUrl = "/infirmier/dashboard.jsp";
+                            dashboardUrl = "/infirmier/dashboard";
                             break;
                         case GENERALISTE:
                             dashboardUrl = "/generaliste/dashboard";
                             break;
                         case SPECIALISTE:
-                            dashboardUrl = "/specialiste/dashboard.jsp";
+                            dashboardUrl = "/specialiste/dashboard";
                             break;
                     }
                 }

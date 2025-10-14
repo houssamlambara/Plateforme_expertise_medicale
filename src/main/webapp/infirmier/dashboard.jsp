@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%
     if (session.getAttribute("userEmail") == null) {
         response.sendRedirect(request.getContextPath() + "/auth/login");
@@ -7,6 +9,7 @@
     String userEmail = (String) session.getAttribute("userEmail");
     String userName = (String) session.getAttribute("userName");
 %>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,7 +19,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
-<!-- Header -->
+
 <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow-lg">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">🏥 Dashboard Infirmier</h1>
@@ -30,10 +33,9 @@
     </div>
 </header>
 
-<!-- Main Content -->
 <main class="container mx-auto px-6 py-8">
 
-    <!-- Actions Section -->
+    <!-- Actions rapides -->
     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
         <h2 class="text-xl font-bold text-gray-800 mb-6">Actions Rapides</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -52,9 +54,9 @@
         </div>
     </div>
 
-    <!-- Visites Table -->
+    <!-- Tableau des patients en attente -->
     <div class="bg-white rounded-xl shadow-md p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-6">Visites du Jour</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-6">Patients en Attente</h2>
         <div class="overflow-x-auto">
             <table class="w-full">
                 <thead>
@@ -63,53 +65,40 @@
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Heure d'arrivée</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Constantes</th>
                     <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Statut</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="px-6 py-4 text-sm text-gray-800">Dupont Jean</td>
-                    <td class="px-6 py-4 text-sm text-gray-600">08:30</td>
-                    <td class="px-6 py-4 text-sm text-gray-600">T: 37.2°C, FC: 75 bpm</td>
-                    <td class="px-6 py-4">
+                <c:forEach var="visite" items="${patientsEnAttente}">
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="px-6 py-4 text-sm text-gray-800">
+                                ${visite.patient.prenom} ${visite.patient.nom}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-600">
+                                ${visite.formattedDate}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-600">
+                            T: ${visite.temperature}°C, FC: ${visite.frequenceCardiaque} bpm
+                        </td>
+                        <td class="px-6 py-4">
                                 <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">
-                                    En attente
+                                        ${visite.statut}
                                 </span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="text-purple-600 hover:text-purple-800 font-medium text-sm">Voir détails</a>
-                    </td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="px-6 py-4 text-sm text-gray-800">Martin Sophie</td>
-                    <td class="px-6 py-4 text-sm text-gray-600">09:15</td>
-                    <td class="px-6 py-4 text-sm text-gray-600">T: 36.8°C, FC: 80 bpm</td>
-                    <td class="px-6 py-4">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
-                                    En cours
-                                </span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="text-purple-600 hover:text-purple-800 font-medium text-sm">Voir détails</a>
-                    </td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="px-6 py-4 text-sm text-gray-800">Bernard Paul</td>
-                    <td class="px-6 py-4 text-sm text-gray-600">10:00</td>
-                    <td class="px-6 py-4 text-sm text-gray-600">T: 37.0°C, FC: 72 bpm</td>
-                    <td class="px-6 py-4">
-                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
-                                    Terminée
-                                </span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="text-purple-600 hover:text-purple-800 font-medium text-sm">Voir détails</a>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </c:forEach>
+
+                <c:if test="${empty patientsEnAttente}">
+                    <tr>
+                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                            Aucun patient en attente
+                        </td>
+                    </tr>
+                </c:if>
                 </tbody>
             </table>
         </div>
     </div>
+
 </main>
 </body>
 </html>

@@ -54,6 +54,8 @@
                 <h1 class="text-2xl font-bold">Liste des Patients</h1>
             </div>
             <div class="flex items-center space-x-4">
+                <a href="<%= request.getContextPath() %>/infirmier/dashboard"
+                   class="text-sm hover:underline">Retour au dashboard</a>
                 <span class="text-sm font-medium"><%= userName %></span>
                 <a href="<%= request.getContextPath() %>/logout"
                    class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">

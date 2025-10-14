@@ -21,7 +21,7 @@
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">🏥 Ajouter un Patient</h1>
         <div class="flex items-center gap-4">
-            <a href="<%= request.getContextPath() %>/infermier/dashboard.jsp"
+            <a href="<%= request.getContextPath() %>/infirmier/dashboard"
                class="text-sm hover:underline">← Retour au dashboard</a>
             <span class="text-sm"><%= userName != null ? userName : userEmail %></span>
             <a href="<%= request.getContextPath() %>/logout"

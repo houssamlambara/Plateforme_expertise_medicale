@@ -12,7 +12,7 @@ import org.platform_expertise_medicle.model.SigneVitaux;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime; // Importer LocalDateTime
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @WebServlet("/infirmier/ajouter-patient")
@@ -22,14 +22,18 @@ public class AddPatientServlet extends HttpServlet {
     private final SigneVitauxDAO signeVitauxDAO = new SigneVitauxDAO();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Affiche la page du formulaire d’ajout
         request.getRequestDispatcher("/infirmier/ajouter-patient.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         try {
-            // --- PARTIE 1 : CRÉATION DU PATIENT ---
+            // CRÉATION DU PATIENT ---
             String nom = request.getParameter("nom");
             String prenom = request.getParameter("prenom");
             String dateNaissanceStr = request.getParameter("dateNaissance");
@@ -37,47 +41,58 @@ public class AddPatientServlet extends HttpServlet {
             String telephone = request.getParameter("telephone");
             String adresse = request.getParameter("adresse");
 
-            if (nom.isEmpty() || prenom.isEmpty() || dateNaissanceStr.isEmpty() || numeroSecuriteSociale.isEmpty()) {
+            // Vérification des champs obligatoires
+            if (nom == null || nom.isEmpty() ||
+                    prenom == null || prenom.isEmpty() ||
+                    dateNaissanceStr == null || dateNaissanceStr.isEmpty() ||
+                    numeroSecuriteSociale == null || numeroSecuriteSociale.isEmpty()) {
+
                 request.setAttribute("error", "Les champs du patient marqués d'une * sont obligatoires.");
                 doGet(request, response);
                 return;
             }
 
+            // Conversion de la date
             Date dateNaissance = new SimpleDateFormat("yyyy-MM-dd").parse(dateNaissanceStr);
+
             Patient nouveauPatient = new Patient(nom, prenom, dateNaissance, numeroSecuriteSociale, telephone, adresse);
             patientDAO.save(nouveauPatient);
 
-            // --- PARTIE 2 : CRÉATION DES SIGNES VITAUX (LA VISITE) ---
+
             SigneVitaux nouveauxSignes = new SigneVitaux();
 
-            // Récupération des données du formulaire
+            // Récupération des valeurs du formulaire
             String temperatureStr = request.getParameter("temperature");
             String poidsStr = request.getParameter("poids");
             String tailleStr = request.getParameter("taille");
             String frequenceCardiaqueStr = request.getParameter("frequenceCardiaque");
             String frequenceRespiratoireStr = request.getParameter("frequenceRespiratoire");
+            String tensionArterielle = request.getParameter("tensionArterielle");
 
-            // Assignation des valeurs à l'objet
-            if (temperatureStr != null && !temperatureStr.isEmpty()) nouveauxSignes.setTemperature(Double.parseDouble(temperatureStr));
-            if (poidsStr != null && !poidsStr.isEmpty()) nouveauxSignes.setPoids(Double.parseDouble(poidsStr));
-            if (tailleStr != null && !tailleStr.isEmpty()) nouveauxSignes.setTaille(Double.parseDouble(tailleStr));
-            if (frequenceCardiaqueStr != null && !frequenceCardiaqueStr.isEmpty()) nouveauxSignes.setFrequenceCardiaque(Integer.parseInt(frequenceCardiaqueStr));
-            if (frequenceRespiratoireStr != null && !frequenceRespiratoireStr.isEmpty()) nouveauxSignes.setFrequenceRespiratoire(Integer.parseInt(frequenceRespiratoireStr));
-            nouveauxSignes.setTensionArterielle(request.getParameter("tensionArterielle"));
+            // Affectation sécurisée des champs
+            if (temperatureStr != null && !temperatureStr.isEmpty())
+                nouveauxSignes.setTemperature(Double.parseDouble(temperatureStr));
 
-            // --- AJOUTS IMPORTANTS POUR LA FILE D'ATTENTE ---
-            // 1. On lie la mesure au patient que l'on vient de créer
+            if (poidsStr != null && !poidsStr.isEmpty())
+                nouveauxSignes.setPoids(Double.parseDouble(poidsStr));
+
+            if (tailleStr != null && !tailleStr.isEmpty())
+                nouveauxSignes.setTaille(Double.parseDouble(tailleStr));
+
+            if (frequenceCardiaqueStr != null && !frequenceCardiaqueStr.isEmpty())
+                nouveauxSignes.setFrequenceCardiaque(Integer.parseInt(frequenceCardiaqueStr));
+
+            if (frequenceRespiratoireStr != null && !frequenceRespiratoireStr.isEmpty())
+                nouveauxSignes.setFrequenceRespiratoire(Integer.parseInt(frequenceRespiratoireStr));
+
+            nouveauxSignes.setTensionArterielle(tensionArterielle);
+
             nouveauxSignes.setPatient(nouveauPatient);
-            // 2. On définit le statut pour la file d'attente
             nouveauxSignes.setStatut("EN_ATTENTE");
-            // 3. On enregistre l'heure exacte de la mesure pour pouvoir trier la file
             nouveauxSignes.setDateMesure(LocalDateTime.now());
-            // ----------------------------------------------------
 
-            // On sauvegarde l'objet SigneVitaux complet
             signeVitauxDAO.save(nouveauxSignes);
 
-            // Message de succès mis à jour
             request.setAttribute("success", "Le patient a été ajouté à la file d'attente avec succès !");
 
         } catch (Exception e) {
@@ -85,6 +100,7 @@ public class AddPatientServlet extends HttpServlet {
             request.setAttribute("error", "Une erreur est survenue lors de l'enregistrement : " + e.getMessage());
         }
 
+        // Recharge la page
         doGet(request, response);
     }
 }
