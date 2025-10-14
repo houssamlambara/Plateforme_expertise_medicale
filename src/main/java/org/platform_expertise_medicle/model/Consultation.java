@@ -11,16 +11,16 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
-    @JoinColumn(name = "visite_id", nullable = false, unique = true)
-    private SigneVitaux visite;
+//    @OneToOne
+//    @JoinColumn(name = "visite_id", nullable = false, unique = true)
+//    private SigneVitaux visite;
 
     @ManyToOne
     @JoinColumn(name = "generaliste_id")
     private MedecinGeneraliste generaliste;
 
     @ManyToOne
-    @JoinColumn(name = "specialiste_id")
+    @JoinColumn(name = "specialiste_id", nullable = true)
     private MedecinSpecialiste medecinSpecialiste;
 
     @Column(columnDefinition = "TEXT")
@@ -32,6 +32,12 @@ public class Consultation {
     @Column(columnDefinition = "TEXT")
     private String prescription;
 
+    @Column(columnDefinition = "TEXT")
+    private String motif;
+
+    @Column(columnDefinition = "TEXT")
+    private String observations;
+
     private LocalDateTime dateConsultation;
 
     @Column(nullable = false)
@@ -42,31 +48,83 @@ public class Consultation {
         this.statut = "ENREGISTREE";
     }
 
-    // Getters & Setters
-    public long getId() { return id; }
-    public void setId(long id) { this.id = id; }
+    public long getId() {
+        return id;
+    }
 
-    public SigneVitaux getVisite() { return visite; }
-    public void setVisite(SigneVitaux visite) { this.visite = visite; }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-    public MedecinGeneraliste getGeneraliste() { return generaliste; }
-    public void setGeneraliste(MedecinGeneraliste generaliste) { this.generaliste = generaliste; }
+    public MedecinGeneraliste getGeneraliste() {
+        return generaliste;
+    }
 
-    public MedecinSpecialiste getMedecinSpecialiste() { return medecinSpecialiste; }
-    public void setMedecinSpecialiste(MedecinSpecialiste medecinSpecialiste) { this.medecinSpecialiste = medecinSpecialiste; }
+    public void setGeneraliste(MedecinGeneraliste generaliste) {
+        this.generaliste = generaliste;
+    }
 
-    public String getSymptomes() { return symptomes; }
-    public void setSymptomes(String symptomes) { this.symptomes = symptomes; }
+    public MedecinSpecialiste getMedecinSpecialiste() {
+        return medecinSpecialiste;
+    }
 
-    public String getDiagnostic() { return diagnostic; }
-    public void setDiagnostic(String diagnostic) { this.diagnostic = diagnostic; }
+    public void setMedecinSpecialiste(MedecinSpecialiste medecinSpecialiste) {
+        this.medecinSpecialiste = medecinSpecialiste;
+    }
 
-    public String getPrescription() { return prescription; }
-    public void setPrescription(String prescription) { this.prescription = prescription; }
+    public String getSymptomes() {
+        return symptomes;
+    }
 
-    public LocalDateTime getDateConsultation() { return dateConsultation; }
-    public void setDateConsultation(LocalDateTime dateConsultation) { this.dateConsultation = dateConsultation; }
+    public void setSymptomes(String symptomes) {
+        this.symptomes = symptomes;
+    }
 
-    public String getStatut() { return statut; }
-    public void setStatut(String statut) { this.statut = statut; }
+    public String getDiagnostic() {
+        return diagnostic;
+    }
+
+    public void setDiagnostic(String diagnostic) {
+        this.diagnostic = diagnostic;
+    }
+
+    public String getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
+    }
+
+    public String getMotif() {
+        return motif;
+    }
+
+    public void setMotif(String motif) {
+        this.motif = motif;
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
+    }
+
+    public LocalDateTime getDateConsultation() {
+        return dateConsultation;
+    }
+
+    public void setDateConsultation(LocalDateTime dateConsultation) {
+        this.dateConsultation = dateConsultation;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
 }

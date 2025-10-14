@@ -2,6 +2,8 @@ package org.platform_expertise_medicle.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+import org.platform_expertise_medicle.model.MedecinGeneraliste;
 import org.platform_expertise_medicle.model.User;
 import org.platform_expertise_medicle.util.JpaUtil;
 
@@ -78,6 +80,22 @@ public class UserDAO {
                 em.getTransaction().rollback();
             }
             throw e;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Optional<MedecinGeneraliste> findMedecinGeneralisteById(Long id) {
+        EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<MedecinGeneraliste> query = em.createQuery(
+                    "SELECT m FROM MedecinGeneraliste m WHERE m.id = :id", MedecinGeneraliste.class);
+            query.setParameter("id", id);
+            MedecinGeneraliste medecin = query.getSingleResult();
+            return Optional.ofNullable(medecin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
         } finally {
             em.close();
         }

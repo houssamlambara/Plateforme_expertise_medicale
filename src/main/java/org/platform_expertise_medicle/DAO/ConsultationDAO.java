@@ -6,6 +6,7 @@ import org.platform_expertise_medicle.model.Consultation;
 import org.platform_expertise_medicle.util.JpaUtil;
 
 public class ConsultationDAO {
+
     public void save(Consultation consultation) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction transaction = em.getTransaction();
@@ -16,6 +17,7 @@ public class ConsultationDAO {
         } catch (Exception e) {
             if (transaction.isActive()) transaction.rollback();
             e.printStackTrace();
+            throw e;
         } finally {
             em.close();
         }

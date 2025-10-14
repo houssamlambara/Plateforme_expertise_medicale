@@ -8,6 +8,20 @@
     <title>Créer une Consultation</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
+<header class="bg-gradient-to-r from-green-600 to-green-800 text-white shadow-lg">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">🩺 Dashboard Généraliste</h1>
+        <div class="flex items-center gap-4">
+            <span class="text-sm">👨‍⚕️ Dr. ${sessionScope.userName}</span>
+            <a href="${pageContext.request.contextPath}/logout"
+               class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">
+                Déconnexion
+            </a>
+        </div>
+    </div>
+</header>
+
 <body class="bg-gray-100 min-h-screen">
 
 <div class="container mx-auto px-6 py-10">
@@ -25,40 +39,33 @@
         <form action="${pageContext.request.contextPath}/generaliste/cree-consultation" method="post" class="space-y-6">
 
             <div>
-                <label class="block text-gray-700 font-semibold mb-2">Sélectionner un patient :</label>
-                <select name="patientId" required class="w-full border border-gray-300 rounded-lg px-4 py-2">
-                    <option value="">-- Choisissez un patient en attente --</option>
-                    <c:forEach var="visite" items="${fileDAttente}">
-                        <option value="${visite.patient.id}"
-                                <c:if test="${not empty selectedPatient and selectedPatient.id == visite.patient.id}">selected</c:if>>
-                                ${visite.patient.prenom} ${visite.patient.nom} - Arrivé le ${visite.formattedDate}
-                        </option>
-                    </c:forEach>
-                </select>
-            </div>
-
-            <div>
                 <label class="block text-gray-700 font-semibold mb-2">Symptômes :</label>
-                <textarea name="symptomes" rows="4" required
-                          class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+                <textarea name="symptomes" rows="4" required class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
             </div>
 
             <div>
                 <label class="block text-gray-700 font-semibold mb-2">Diagnostic :</label>
-                <textarea name="diagnostic" rows="4" required
-                          class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+                <textarea name="diagnostic" rows="4" required class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
             </div>
 
             <div>
                 <label class="block text-gray-700 font-semibold mb-2">Prescription :</label>
-                <textarea name="prescription" rows="4"
-                          class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+                <textarea name="prescription" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Motif :</label>
+                <textarea name="motif" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Observations :</label>
+                <textarea name="observations" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
             </div>
 
             <div class="text-center">
-                <button type="submit"
-                        class="bg-green-700 hover:bg-green-800 text-white font-semibold px-8 py-3 rounded-lg shadow-md">
-                    💾 Enregistrer la Consultation
+                <button type="submit" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-8 py-3 rounded-lg shadow-md">
+                    Enregistrer la Consultation
                 </button>
             </div>
         </form>

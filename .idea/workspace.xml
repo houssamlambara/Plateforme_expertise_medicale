@@ -10,24 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dea15ad3-62b8-4f5d-b811-38dbd65d1fe8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/ConsultationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/ConsultationDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/SigneVitauxDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/SigneVitauxDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultations.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/MedecinGeneraliste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/MedecinGeneraliste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/MedecinSpecialiste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/MedecinSpecialiste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/SigneVitaux.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/SigneVitaux.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/LogoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/LogoutServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/GeneralisteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/GeneralisteServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/generaliste/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/generaliste/dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/infirmier/ajouter-patient.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/infirmier/ajouter-patient.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/infirmier/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/infirmier/dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/infirmier/liste-patient.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/infirmier/liste-patient.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/generaliste/cree-consultation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/generaliste/cree-consultation.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +36,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "houssamlambara"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;houssamlambara&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/houssamlambara/Plateforme_expertise_medicale.git",
-    "accountId": "ab2c8843-832c-4130-bf79-fadfabde4908"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/houssamlambara/Plateforme_expertise_medicale.git&quot;,
+    &quot;accountId&quot;: &quot;ab2c8843-832c-4130-bf79-fadfabde4908&quot;
   }
-}]]></component>
+}</component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -71,10 +62,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="340bOka4w8ea1A40vzSWGHfArHG" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -83,23 +74,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 11.0.11.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.11.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationStatuses">
       <map>
@@ -217,7 +208,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760353410166</updated>
-      <workItem from="1760353415779" duration="9337000" />
+      <workItem from="1760353415779" duration="19232000" />
     </task>
     <servers />
   </component>

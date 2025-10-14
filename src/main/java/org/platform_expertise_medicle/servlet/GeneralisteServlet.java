@@ -18,16 +18,14 @@ public class GeneralisteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // Vérifier connexion
         if (request.getSession().getAttribute("userEmail") == null) {
             response.sendRedirect(request.getContextPath() + "/auth/login");
             return;
         }
 
-        List<SigneVitaux> fileDAttente = signeVitauxDAO.findPatientsEnAttente();
-        for (SigneVitaux sv : fileDAttente) {
-            sv.prepareFormattedDate();
-        }
+        // Récupérer toutes les visites
+        List<SigneVitaux> fileDAttente = signeVitauxDAO.findByStatut("EN_ATTENTE");
 
         request.setAttribute("fileDAttente", fileDAttente);
         request.getRequestDispatcher("/generaliste/dashboard.jsp").forward(request, response);
