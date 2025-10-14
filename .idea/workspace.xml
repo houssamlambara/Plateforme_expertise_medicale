@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dea15ad3-62b8-4f5d-b811-38dbd65d1fe8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/generaliste/historique-consultations.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/generaliste/historique-consultations.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +200,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760353410166</updated>
-      <workItem from="1760353415779" duration="34974000" />
+      <workItem from="1760353415779" duration="36455000" />
     </task>
     <servers />
   </component>
