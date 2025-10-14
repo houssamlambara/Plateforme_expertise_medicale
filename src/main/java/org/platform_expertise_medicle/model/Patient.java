@@ -29,6 +29,10 @@ public class Patient {
 
     private String adresse;
 
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Consultation> consultations;
+
+
     public Patient(){
 
     }
@@ -96,5 +100,13 @@ public class Patient {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public List<Consultation> getConsultations() {
+        return consultations;
+    }
+
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations = consultations;
     }
 }

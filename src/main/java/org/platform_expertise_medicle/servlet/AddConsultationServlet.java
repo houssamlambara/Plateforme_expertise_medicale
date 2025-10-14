@@ -91,13 +91,18 @@ public class AddConsultationServlet extends HttpServlet {
 
             consultationDAO.save(consultation);
 
+            // 🔹 Passer la consultation à la JSP pour afficher les boutons Clôturer / Avis spécialiste
+            request.setAttribute("consultation", consultation);
+
             // 🔹 Mise à jour du statut du dernier signe vital du patient
             SigneVitaux dernierSigne = signeVitauxDAO.findLastByPatientId(patientId);
             if (dernierSigne != null) {
                 dernierSigne.setStatut("TRAITE");
                 signeVitauxDAO.update(dernierSigne);
+                request.setAttribute("visite", dernierSigne);
             }
 
+            request.setAttribute("patient", patient);
             request.setAttribute("success",
                     "Consultation créée avec succès pour le patient : " +
                             patient.getPrenom() + " " + patient.getNom());

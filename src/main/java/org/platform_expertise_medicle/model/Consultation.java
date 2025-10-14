@@ -11,7 +11,6 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    // 🔹 Le patient lié à la consultation
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
@@ -21,7 +20,6 @@ public class Consultation {
     @JoinColumn(name = "generaliste_id")
     private MedecinGeneraliste generaliste;
 
-    // 🔹 Le spécialiste (optionnel)
     @ManyToOne
     @JoinColumn(name = "specialiste_id", nullable = true)
     private MedecinSpecialiste medecinSpecialiste;
