@@ -38,7 +38,7 @@
     <!-- Actions rapides -->
     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
         <h2 class="text-xl font-bold text-gray-800 mb-6">Actions Rapides</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <a href="<%= request.getContextPath() %>/infirmier/ajouter-patient"
                class="bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
                 Nouvelle Visite
@@ -47,10 +47,10 @@
                class="bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
                 Liste des Patients
             </a>
-            <a href="<%= request.getContextPath() %>/infirmier/historique"
-               class="bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
-                Historique
-            </a>
+<%--            <a href="<%= request.getContextPath() %>/infirmier/historique"--%>
+<%--               class="bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">--%>
+<%--                Historique--%>
+<%--            </a>--%>
         </div>
     </div>
 

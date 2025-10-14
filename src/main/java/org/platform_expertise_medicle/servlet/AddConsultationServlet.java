@@ -7,10 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.platform_expertise_medicle.DAO.ConsultationDAO;
+import org.platform_expertise_medicle.DAO.PatientDAO;
+import org.platform_expertise_medicle.DAO.SigneVitauxDAO;
 import org.platform_expertise_medicle.DAO.UserDAO;
 import org.platform_expertise_medicle.enums.Role;
 import org.platform_expertise_medicle.model.Consultation;
-import org.platform_expertise_medicle.model.MedecinGeneraliste;
+import org.platform_expertise_medicle.model.Patient;
+import org.platform_expertise_medicle.model.SigneVitaux;
 import org.platform_expertise_medicle.model.User;
 
 import java.io.IOException;
@@ -21,6 +24,8 @@ public class AddConsultationServlet extends HttpServlet {
 
     private final ConsultationDAO consultationDAO = new ConsultationDAO();
     private final UserDAO userDAO = new UserDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
+    private final SigneVitauxDAO signeVitauxDAO = new SigneVitauxDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,6 +52,23 @@ public class AddConsultationServlet extends HttpServlet {
         }
 
         try {
+            // Récupérer le patient sélectionné depuis le lien
+            String patientIdStr = request.getParameter("patientId");
+            if (patientIdStr == null || patientIdStr.isEmpty()) {
+                request.setAttribute("error", "Aucun patient sélectionné !");
+                doGet(request, response);
+                return;
+            }
+
+            long patientId = Long.parseLong(patientIdStr);
+            Patient patient = patientDAO.findById(patientId);
+            if (patient == null) {
+                request.setAttribute("error", "Patient introuvable !");
+                doGet(request, response);
+                return;
+            }
+
+            // Récupérer les champs du formulaire
             String symptomes = request.getParameter("symptomes");
             String diagnostic = request.getParameter("diagnostic");
             String prescription = request.getParameter("prescription");
@@ -61,18 +83,18 @@ public class AddConsultationServlet extends HttpServlet {
             consultation.setMotif(motif);
             consultation.setObservations(observations);
             consultation.setMedecinSpecialiste(null); // pas de spécialiste pour l'instant
-
-            // Récupérer le médecin généraliste
-            Optional<MedecinGeneraliste> medecinOpt = userDAO.findMedecinGeneralisteById(user.getId());
-            if (medecinOpt.isEmpty()) {
-                request.setAttribute("error", "Médecin non trouvé en base.");
-                doGet(request, response);
-                return;
-            }
-            consultation.setGeneraliste(medecinOpt.get());
+            consultation.setGeneraliste(userDAO.findMedecinGeneralisteById(user.getId()).orElseThrow());
 
             consultationDAO.save(consultation);
-            request.setAttribute("success", "Consultation créée avec succès !");
+
+            // Mettre à jour le statut du patient dans SigneVitaux
+            SigneVitaux dernierSigne = signeVitauxDAO.findLastByPatientId(patientId);
+            if (dernierSigne != null) {
+                dernierSigne.setStatut("TRAITE");
+                signeVitauxDAO.update(dernierSigne);
+            }
+
+            request.setAttribute("success", "Consultation créée avec succès pour le patient : " + patient.getPrenom() + " " + patient.getNom());
 
         } catch (Exception e) {
             e.printStackTrace();
