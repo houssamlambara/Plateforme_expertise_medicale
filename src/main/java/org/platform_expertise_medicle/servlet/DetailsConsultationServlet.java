@@ -58,6 +58,7 @@ public class DetailsConsultationServlet extends HttpServlet {
             // Mettre les objets en attributs
             request.setAttribute("consultation", consultation);
             request.setAttribute("signesVitaux", signesVitaux);
+            request.setAttribute("patient", consultation.getPatient());
 
             // Forward vers JSP détails
             request.getRequestDispatcher("/generaliste/details-consultation.jsp").forward(request, response);
