@@ -53,7 +53,6 @@ public class ConsultationDAO {
         }
     }
 
-    // ✅ Lister toutes les consultations
     public List<Consultation> findAll() {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {

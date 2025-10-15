@@ -22,13 +22,9 @@
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">🩺 Historique des Consultations</h1>
         <div class="flex items-center gap-4">
-            <a href="${pageContext.request.contextPath}/generaliste/dashboard"
-               class="text-sm hover:underline">← Retour au dashboard</a>
+            <a href="${pageContext.request.contextPath}/generaliste/dashboard" class="text-sm hover:underline">← Retour au dashboard</a>
             <span class="text-sm">👨‍⚕️ Dr. ${sessionScope.userName}</span>
-            <a href="${pageContext.request.contextPath}/logout"
-               class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">
-                Déconnexion
-            </a>
+            <a href="${pageContext.request.contextPath}/logout" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">Déconnexion</a>
         </div>
     </div>
 </header>
@@ -36,7 +32,6 @@
 <main class="container mx-auto px-6 py-8">
     <div class="bg-white rounded-xl shadow-md p-6">
         <h2 class="text-xl font-bold text-gray-800 mb-6">Toutes les consultations</h2>
-
         <div class="overflow-x-auto">
             <table class="w-full">
                 <thead class="bg-gray-50 border-b">
@@ -48,17 +43,12 @@
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-
                 <c:forEach items="${consultations}" var="c">
                     <c:choose>
                         <c:when test="${not empty c.patient}">
                             <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-4 text-sm text-gray-800 font-medium">
-                                        ${c.patient.prenom} ${c.patient.nom}
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-600">
-                                        ${c.dateConsultation}
-                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-800 font-medium">${c.patient.prenom} ${c.patient.nom}</td>
+                                <td class="px-6 py-4 text-sm text-gray-600">${c.dateConsultation}</td>
                                 <td class="px-6 py-4">
                                     <c:choose>
                                         <c:when test="${c.statut == 'TERMINEE'}">
@@ -73,37 +63,32 @@
                                     </c:choose>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="${pageContext.request.contextPath}/generaliste/cree-consultation?patientId=${c.patient.id}&consultationId=${c.id}"
-                                       class="text-green-600 hover:text-green-800 font-medium text-sm">
-                                        Voir / Modifier
+                                    <!-- 🔹 Correction : paramètre consultationId -->
+                                    <a href="${pageContext.request.contextPath}/generaliste/details-consultation?consultationId=${c.id}&patientId=${c.patient.id}" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
+                                        Voir détails
+                                    </a>
+                                    <a href="${pageContext.request.contextPath}/generaliste/cree-consultation?patientId=${c.patient.id}&consultationId=${c.id}" class="text-green-600 hover:text-green-800 font-medium text-sm">
+                                        Cree
                                     </a>
                                 </td>
                             </tr>
                         </c:when>
-
                         <c:otherwise>
                             <tr class="hover:bg-gray-50 transition">
-                                <td colspan="4" class="px-6 py-4 text-center text-red-500 font-semibold">
-                                    Patient supprimé pour cette consultation
-                                </td>
+                                <td colspan="4" class="px-6 py-4 text-center text-red-500 font-semibold">Patient supprimé pour cette consultation</td>
                             </tr>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
-
                 <c:if test="${empty consultations}">
                     <tr>
-                        <td colspan="4" class="px-6 py-4 text-center text-gray-500">
-                            Aucune consultation trouvée.
-                        </td>
+                        <td colspan="4" class="px-6 py-4 text-center text-gray-500">Aucune consultation trouvée.</td>
                     </tr>
                 </c:if>
-
                 </tbody>
             </table>
         </div>
     </div>
 </main>
-
 </body>
 </html>
