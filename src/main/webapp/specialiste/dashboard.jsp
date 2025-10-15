@@ -32,30 +32,11 @@
 
 <!-- Main Content -->
 <main class="container mx-auto px-6 py-8">
-    <!-- Stats Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="text-3xl font-bold text-gray-800">6</h3>
-            <p class="text-gray-600 text-sm">Demandes d'expertise</p>
-        </div>
-        <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="text-3xl font-bold text-gray-800">4</h3>
-            <p class="text-gray-600 text-sm">En attente</p>
-        </div>
-        <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="text-3xl font-bold text-gray-800">2</h3>
-            <p class="text-gray-600 text-sm">En cours</p>
-        </div>
-        <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="text-3xl font-bold text-gray-800">15</h3>
-            <p class="text-gray-600 text-sm">Terminées ce mois</p>
-        </div>
-    </div>
 
     <!-- Actions Section -->
     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
         <h2 class="text-xl font-bold text-gray-800 mb-6">Actions Rapides</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <a href="<%= request.getContextPath() %>/specialiste/expertises-en-attente"
                class="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
                 Expertises en attente
@@ -67,10 +48,6 @@
             <a href="<%= request.getContextPath() %>/specialiste/historique"
                class="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
                 Historique
-            </a>
-            <a href="<%= request.getContextPath() %>/specialiste/statistiques"
-               class="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
-                Statistiques
             </a>
         </div>
     </div>

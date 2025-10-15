@@ -126,11 +126,11 @@
                     <c:when test="${not empty consultation}">
                         <button type="submit" name="action" value="cloturer"
                                 class="bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-3 rounded-lg shadow-md">
-                            ✅ Clôturer la consultation
+                            Clôturer la consultation
                         </button>
                         <button type="submit" name="action" value="demanderSpecialiste"
                                 class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md">
-                            👨‍⚕️ Demander un avis spécialiste
+                            Demander un avis spécialiste
                         </button>
                     </c:when>
                     <c:otherwise>

@@ -49,7 +49,7 @@ public class UserServlet extends HttpServlet {
                 request.getSession().setAttribute("isAuthenticated", true);
 
                 // Déterminer le dashboard selon le rôle
-                String dashboardUrl = "/infermier/dashboard.jsp"; // par défaut
+                String dashboardUrl = "/infermier/dashboard.jsp";
 
                 if (user.getRole() != null) {
                     switch (user.getRole()) {
@@ -60,7 +60,7 @@ public class UserServlet extends HttpServlet {
                             dashboardUrl = "/generaliste/dashboard";
                             break;
                         case SPECIALISTE:
-                            dashboardUrl = "/specialiste/dashboard";
+                            dashboardUrl = "/specialiste/dashboard.jsp";
                             break;
                     }
                 }
