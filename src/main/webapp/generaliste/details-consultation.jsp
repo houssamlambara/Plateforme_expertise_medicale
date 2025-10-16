@@ -58,7 +58,7 @@
             </div>
             <div>
                 <p class="text-gray-600 font-semibold">Statut :</p>
-                <p class="text-gray-800">${consultation.statut}</p>
+                <p class="text-gray-800">${consultation.statut != null ? consultation.statut : "-"}</p>
             </div>
             <div>
                 <p class="text-gray-600 font-semibold">Date :</p>
@@ -153,6 +153,33 @@
             </c:when>
             <c:otherwise>
                 <p class="text-gray-500">Aucun signe vital enregistré pour ce patient.</p>
+            </c:otherwise>
+        </c:choose>
+    </div>
+
+    <!-- Actes Techniques -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Actes Techniques Réalisés</h2>
+        <c:choose>
+            <c:when test="${not empty consultation.actesTechniques}">
+                <div class="space-y-4">
+                    <c:forEach var="acte" items="${consultation.actesTechniques}">
+                        <div class="flex justify-between border border-gray-200 rounded-lg p-4 bg-gray-50">
+                            <span class="text-gray-800 font-medium">${acte.nom}</span>
+                            <span class="text-gray-600">
+                                <c:choose>
+                                    <c:when test="${acte.prix != null}">
+                                        ${acte.prix} DH
+                                    </c:when>
+                                    <c:otherwise>-</c:otherwise>
+                                </c:choose>
+                            </span>
+                        </div>
+                    </c:forEach>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <p class="text-gray-500">Aucun acte technique enregistré pour cette consultation.</p>
             </c:otherwise>
         </c:choose>
     </div>

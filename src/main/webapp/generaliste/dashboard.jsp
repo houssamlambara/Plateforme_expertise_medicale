@@ -41,7 +41,7 @@
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
             <a href="${pageContext.request.contextPath}/generaliste/historique-consultations"
                class="bg-gradient-to-r from-green-600 to-green-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
-                Historique des Consultations
+                Listes des Consultations
             </a>
         </div>
     </div>
