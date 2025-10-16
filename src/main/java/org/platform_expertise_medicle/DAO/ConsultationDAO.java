@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import org.platform_expertise_medicle.model.Consultation;
+import org.platform_expertise_medicle.model.DemandeExpertise;
 import org.platform_expertise_medicle.model.MedecinGeneraliste;
 import org.platform_expertise_medicle.model.MedecinSpecialiste;
 import org.platform_expertise_medicle.util.JpaUtil;
@@ -93,18 +94,21 @@ public class ConsultationDAO {
         }
     }
 
-    public List<Consultation> findBySpecialiste(MedecinSpecialiste specialiste) {
+    public List<Consultation> findEnAttenteAvisSpecialiste(long specialisteId) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
             TypedQuery<Consultation> query = em.createQuery(
-                    "SELECT c FROM Consultation c WHERE c.medecinSpecialiste = :specialiste ORDER BY c.dateConsultation DESC",
+                    "SELECT c FROM Consultation c " +
+                            "WHERE c.medecinSpecialiste.id = :specId " +
+                            "AND c.statut = :statut " +
+                            "ORDER BY c.dateConsultation DESC",
                     Consultation.class
             );
-            query.setParameter("specialiste", specialiste);
+            query.setParameter("specId", specialisteId);
+            query.setParameter("statut", "EN_ATTENTE_AVIS_SPECIALISTE");
             return query.getResultList();
         } finally {
             em.close();
         }
     }
-
 }

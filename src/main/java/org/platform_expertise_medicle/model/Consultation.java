@@ -40,6 +40,9 @@ public class Consultation {
     @Column(columnDefinition = "TEXT")
     private String observations;
 
+    @Column(nullable = false)
+    private String priorite = "Normale";
+
     private LocalDateTime dateConsultation;
 
     @Column(nullable = false)
@@ -103,5 +106,13 @@ public class Consultation {
     public void removeActeTechnique(ActeTechnique acte) {
         actesTechniques.remove(acte);
         acte.setConsultation(null);
+    }
+
+    public String getPriorite() {
+        return priorite;
+    }
+
+    public void setPriorite(String priorite) {
+        this.priorite = priorite;
     }
 }

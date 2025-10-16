@@ -90,6 +90,7 @@ public class AddConsultationServlet extends HttpServlet {
             String prescription = request.getParameter("prescription");
             String motif = request.getParameter("motif");
             String observations = request.getParameter("observations");
+            String priorite = request.getParameter("priorite"); // par ex. "Urgente", "Normale", "Basse"
 
             // Récupération des actes techniques
             String[] actesNoms = request.getParameterValues("acteNom[]");
@@ -117,6 +118,7 @@ public class AddConsultationServlet extends HttpServlet {
             consultation.setPrescription(prescription);
             consultation.setMotif(motif);
             consultation.setObservations(observations);
+            consultation.setPriorite(priorite != null ? priorite : "Normale");
 
             // Ajouter les actes techniques
             for (ActeTechnique acte : actesTechniquesList) {
