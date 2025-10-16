@@ -114,7 +114,7 @@
 
             <!-- Actes Techniques -->
             <div class="bg-gray-50 border-l-4 border-blue-700 p-4 rounded mb-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3">Actes Techniques Réalisés</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Actes Techniques</h3>
                 <div id="actes-container" class="space-y-4">
 
                     <c:choose>
@@ -132,7 +132,7 @@
                                         <option value="Analyse de sang" ${acte.nom == 'Analyse de sang' ? 'selected' : ''}>Analyse de sang</option>
                                         <option value="Analyse d’urine" ${acte.nom == 'Analyse d’urine' ? 'selected' : ''}>Analyse d’urine</option>
                                     </select>
-                                    <input type="number" name="actePrix[]" step="0.01" placeholder="Prix (€)"
+                                    <input type="number" name="actePrix[]" step="0.01" placeholder="Prix (DH)"
                                            class="border p-2 rounded-lg w-full" value="${acte.prix}"/>
                                 </div>
                             </c:forEach>
@@ -150,7 +150,7 @@
                                     <option value="Analyse de sang">Analyse de sang</option>
                                     <option value="Analyse d’urine">Analyse d’urine</option>
                                 </select>
-                                <input type="number" name="actePrix[]" step="0.01" placeholder="Prix (€)" class="border p-2 rounded-lg w-full">
+                                <input type="number" name="actePrix[]" step="0.01" placeholder="Prix (DH)" class="border p-2 rounded-lg w-full">
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -158,7 +158,7 @@
                 </div>
 
                 <button type="button" id="add-acte" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
-                    ➕ Ajouter un autre acte
+                    Ajouter un autre acte
                 </button>
             </div>
 

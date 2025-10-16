@@ -64,6 +64,11 @@
                 <p class="text-gray-600 font-semibold">Date :</p>
                 <p class="text-gray-800">${consultation.dateConsultation != null ? consultation.dateConsultation : "-"}</p>
             </div>
+            <!-- Nouvelle ligne pour le coût fixe -->
+            <div>
+                <p class="text-gray-600 font-semibold">Coût consultation :</p>
+                <p class="text-gray-800">150 dh</p>
+            </div>
         </div>
     </div>
 
