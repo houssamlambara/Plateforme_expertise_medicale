@@ -6,17 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.platform_expertise_medicle.DAO.ConsultationDAO;
-import org.platform_expertise_medicle.DAO.PatientDAO;
-import org.platform_expertise_medicle.DAO.SigneVitauxDAO;
-import org.platform_expertise_medicle.DAO.UserDAO;
+import org.platform_expertise_medicle.DAO.*;
 import org.platform_expertise_medicle.enums.Role;
-import org.platform_expertise_medicle.model.ActeTechnique;
-import org.platform_expertise_medicle.model.Consultation;
-import org.platform_expertise_medicle.model.MedecinGeneraliste;
-import org.platform_expertise_medicle.model.Patient;
-import org.platform_expertise_medicle.model.SigneVitaux;
-import org.platform_expertise_medicle.model.User;
+import org.platform_expertise_medicle.enums.StatutConsultation;
+import org.platform_expertise_medicle.model.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -30,6 +23,8 @@ public class AddConsultationServlet extends HttpServlet {
     private final UserDAO userDAO = new UserDAO();
     private final PatientDAO patientDAO = new PatientDAO();
     private final SigneVitauxDAO signeVitauxDAO = new SigneVitauxDAO();
+    private final MedecinSpecialisteDAO specialisteDAO = new MedecinSpecialisteDAO();
+    private final DemandeExpertiseDAO demandeDAO = new DemandeExpertiseDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -84,13 +79,13 @@ public class AddConsultationServlet extends HttpServlet {
                 return;
             }
 
-            // Champs du formulaire
+            // Récupération des champs du formulaire
             String symptomes = request.getParameter("symptomes");
             String diagnostic = request.getParameter("diagnostic");
             String prescription = request.getParameter("prescription");
             String motif = request.getParameter("motif");
             String observations = request.getParameter("observations");
-            String priorite = request.getParameter("priorite"); // par ex. "Urgente", "Normale", "Basse"
+            String priorite = request.getParameter("priorite"); // "Urgente", "Normale", "Basse"
 
             // Récupération des actes techniques
             String[] actesNoms = request.getParameterValues("acteNom[]");
@@ -120,19 +115,32 @@ public class AddConsultationServlet extends HttpServlet {
             consultation.setObservations(observations);
             consultation.setPriorite(priorite != null ? priorite : "Normale");
 
-            // Ajouter les actes techniques
-            for (ActeTechnique acte : actesTechniquesList) {
-                consultation.addActeTechnique(acte);
-            }
+            actesTechniquesList.forEach(consultation::addActeTechnique);
 
             MedecinGeneraliste generaliste = userDAO.findMedecinGeneralisteById(user.getId())
                     .orElseThrow(() -> new RuntimeException("Médecin généraliste introuvable."));
             consultation.setGeneraliste(generaliste);
-            consultation.setMedecinSpecialiste(null);
 
+            // 🔹 Persister consultation AVANT la demande
             consultationDAO.save(consultation);
 
-            // Mettre à jour le dernier signe vital
+            // 🔹 Assigner le spécialiste unique et créer demande d’expertise
+            MedecinSpecialiste specialiste = specialisteDAO.findById(1L); // ID du spécialiste
+            if (specialiste != null) {
+                consultation.setMedecinSpecialiste(specialiste);
+                consultation.setStatut(StatutConsultation.EN_ATTENTE_AVIS_SPECIALISTE);
+                consultationDAO.update(consultation); // mise à jour du statut et spécialiste
+
+                DemandeExpertise demande = new DemandeExpertise();
+                demande.setConsultation(consultation);
+                demande.setSpecialiste(specialiste);
+                demande.setStatut(StatutConsultation.EN_ATTENTE_AVIS_SPECIALISTE);
+                demande.setQuestion(consultation.getMotif());
+                demande.setPriorite(consultation.getPriorite());
+                demandeDAO.save(demande);
+            }
+
+            // 🔹 Mettre à jour le dernier signe vital
             SigneVitaux dernierSigne = signeVitauxDAO.findLastByPatientId(patientId);
             if (dernierSigne != null) {
                 dernierSigne.setStatut("TRAITE");
@@ -143,7 +151,7 @@ public class AddConsultationServlet extends HttpServlet {
             request.setAttribute("patient", patient);
             request.setAttribute("consultation", consultation);
             request.setAttribute("success",
-                    "Consultation créée avec succès pour le patient : " +
+                    "Consultation créée avec succès et envoyée au spécialiste pour le patient : " +
                             patient.getPrenom() + " " + patient.getNom());
 
         } catch (Exception e) {

@@ -1,6 +1,8 @@
 package org.platform_expertise_medicle.model;
 
 import jakarta.persistence.*;
+import org.platform_expertise_medicle.enums.StatutConsultation;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,15 +47,15 @@ public class Consultation {
 
     private LocalDateTime dateConsultation;
 
-    @Column(nullable = false)
-    private String statut;
+    @Enumerated(EnumType.STRING)
+    private StatutConsultation statut;
 
     @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ActeTechnique> actesTechniques = new ArrayList<>();
 
     public Consultation() {
         this.dateConsultation = LocalDateTime.now();
-        this.statut = "ENREGISTREE";
+        this.statut = StatutConsultation.EN_COURS;
     }
 
     public long getId() { return id; }
@@ -86,8 +88,13 @@ public class Consultation {
     public LocalDateTime getDateConsultation() { return dateConsultation; }
     public void setDateConsultation(LocalDateTime dateConsultation) { this.dateConsultation = dateConsultation; }
 
-    public String getStatut() { return statut; }
-    public void setStatut(String statut) { this.statut = statut; }
+    public StatutConsultation getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutConsultation statut) {
+        this.statut = statut;
+    }
 
     public List<ActeTechnique> getActesTechniques() { return actesTechniques; }
 

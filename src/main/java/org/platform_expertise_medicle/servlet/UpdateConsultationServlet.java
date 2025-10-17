@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.platform_expertise_medicle.DAO.ConsultationDAO;
 import org.platform_expertise_medicle.DAO.SigneVitauxDAO;
 import org.platform_expertise_medicle.DAO.PatientDAO;
+import org.platform_expertise_medicle.enums.StatutConsultation;
 import org.platform_expertise_medicle.model.Consultation;
 import org.platform_expertise_medicle.model.SigneVitaux;
 import org.platform_expertise_medicle.model.Patient;
@@ -52,11 +53,11 @@ public class UpdateConsultationServlet extends HttpServlet {
         consultation.setMotif(request.getParameter("motif"));
         consultation.setObservations(request.getParameter("observations"));
 
-        if("cloturer".equals(action)) {
-            consultation.setStatut("TERMINEE");
+        if ("cloturer".equals(action)) {
+            consultation.setStatut(StatutConsultation.TERMINEE);
             visite.setStatut("TERMINEE");
-        } else if("demanderSpecialiste".equals(action)) {
-            consultation.setStatut("EN_ATTENTE_AVIS_SPECIALISTE");
+        } else if ("demanderSpecialiste".equals(action)) {
+            consultation.setStatut(StatutConsultation.EN_ATTENTE_AVIS_SPECIALISTE);
             visite.setStatut("EN_COURS");
         }
 

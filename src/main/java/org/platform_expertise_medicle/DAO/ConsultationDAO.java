@@ -3,6 +3,7 @@ package org.platform_expertise_medicle.DAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+import org.platform_expertise_medicle.enums.StatutConsultation;
 import org.platform_expertise_medicle.model.Consultation;
 import org.platform_expertise_medicle.model.DemandeExpertise;
 import org.platform_expertise_medicle.model.MedecinGeneraliste;
@@ -16,13 +17,29 @@ public class ConsultationDAO {
     public void save(Consultation consultation) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction transaction = em.getTransaction();
+
         try {
             transaction.begin();
+
+            // 1️⃣ On sauvegarde la consultation
             em.persist(consultation);
+
+            // 2️⃣ Si la consultation est destinée à un spécialiste → on crée la demande
+            if (consultation.getMedecinSpecialiste() != null) {
+                DemandeExpertise demande = new DemandeExpertise();
+                demande.setConsultation(consultation);
+                demande.setSpecialiste(consultation.getMedecinSpecialiste());
+                demande.setStatut(StatutConsultation.EN_ATTENTE_AVIS_SPECIALISTE);
+                demande.setPriorite(consultation.getPriorite());
+                demande.setQuestion("Demande d'avis du généraliste"); // tu peux personnaliser
+                em.persist(demande);
+            }
+
             transaction.commit();
+            System.out.println("Consultation et demande d'expertise enregistrées avec succès.");
         } catch (Exception e) {
             if (transaction.isActive()) transaction.rollback();
-            throw e;
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -52,7 +69,7 @@ public class ConsultationDAO {
         }
     }
 
-    public void updateStatut(long id, String nouveauStatut) {
+    public void updateStatut(long id, StatutConsultation nouveauStatut) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         try {

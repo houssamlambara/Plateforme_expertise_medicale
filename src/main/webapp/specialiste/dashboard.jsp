@@ -67,24 +67,31 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                 <c:choose>
-                    <c:when test="${not empty consultations}">
-                        <c:forEach var="consultation" items="${consultations}">
+                    <c:when test="${not empty demandes}">
+                        <c:forEach var="demande" items="${demandes}">
                             <tr class="hover:bg-gray-50 transition">
+                                <!-- Nom et prénom du patient -->
                                 <td class="px-6 py-4 text-sm text-gray-800">
-                                        ${consultation.patient.nom} ${consultation.patient.prenom}
+                                        ${demande.patient.nom} ${demande.patient.prenom}
                                 </td>
+
+                                <!-- Nom du généraliste -->
                                 <td class="px-6 py-4 text-sm text-gray-600">
-                                    Dr. ${consultation.generaliste.nom}
+                                    Dr. ${demande.generaliste.nom}
                                 </td>
+
+                                <!-- Motif de consultation -->
                                 <td class="px-6 py-4 text-sm text-gray-600">
-                                        ${consultation.motif}
+                                        ${demande.motif}
                                 </td>
+
+                                <!-- Priorité -->
                                 <td class="px-6 py-4">
                                     <c:choose>
-                                        <c:when test="${consultation.priorite == 'Urgente'}">
+                                        <c:when test="${demande.priorite == 'Urgente'}">
                                             <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">Urgente</span>
                                         </c:when>
-                                        <c:when test="${consultation.priorite == 'Normale'}">
+                                        <c:when test="${demande.priorite == 'Normale'}">
                                             <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">Normale</span>
                                         </c:when>
                                         <c:otherwise>
@@ -92,12 +99,26 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
+
+                                <!-- Statut -->
                                 <td class="px-6 py-4">
-                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">En attente</span>
+                                    <c:choose>
+                                        <c:when test="${demande.statut.name() == 'EN_ATTENTE_AVIS_SPECIALISTE'}">
+                                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">En attente</span>
+                                        </c:when>
+                                        <c:when test="${demande.statut.name() == 'EN_COURS'}">
+                                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">En cours</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Terminée</span>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </td>
+
+                                <!-- Actions -->
                                 <td class="px-6 py-4 text-sm">
-                                    <a href="${pageContext.request.contextPath}/specialiste/repondre?consultationId=${consultation.id}" class="text-red-600 hover:text-red-800 font-medium">Répondre</a> |
-                                    <a href="${pageContext.request.contextPath}/specialiste/voir-dossier?consultationId=${consultation.id}" class="text-red-600 hover:text-red-800 font-medium">Voir dossier</a>
+                                    <a href="${pageContext.request.contextPath}/specialiste/repondre?demandeId=${demande.id}" class="text-red-600 hover:text-red-800 font-medium">Répondre</a> |
+                                    <a href="${pageContext.request.contextPath}/specialiste/voir-dossier?demandeId=${demande.id}" class="text-red-600 hover:text-red-800 font-medium">Voir dossier</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -105,12 +126,13 @@
                     <c:otherwise>
                         <tr>
                             <td colspan="6" class="px-6 py-4 text-center text-gray-500">
-                                Aucune consultation en attente.
+                                Aucune demande d'expertise en attente.
                             </td>
                         </tr>
                     </c:otherwise>
                 </c:choose>
                 </tbody>
+
             </table>
         </div>
     </div>

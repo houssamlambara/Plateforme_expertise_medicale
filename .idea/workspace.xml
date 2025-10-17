@@ -12,8 +12,13 @@
     <list default="true" id="dea15ad3-62b8-4f5d-b811-38dbd65d1fe8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/ConsultationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/ConsultationDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/DemandeExpertise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/DemandeExpertise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/DemanderSpecialisteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/DemanderSpecialisteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/SpecialisteDashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/SpecialisteDashboardServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/UpdateConsultationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/UpdateConsultationServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +31,7 @@
       <list>
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -70,23 +76,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 11.0.11.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Tomcat Server.Tomcat 11.0.11.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/safiy/IdeaProjects/Plateforme_expertise_medicale",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunDashboard">
     <option name="configurationStatuses">
       <map>
@@ -209,6 +217,9 @@
       <updated>1760353410166</updated>
       <workItem from="1760353415779" duration="36455000" />
       <workItem from="1760515446654" duration="23027000" />
+      <workItem from="1760645402167" duration="32000" />
+      <workItem from="1760645494873" duration="7000" />
+      <workItem from="1760645797846" duration="18142000" />
     </task>
     <servers />
   </component>
@@ -219,113 +230,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/SpecialisteDashboardServlet.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/SpecialisteDashboardServlet.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java</url>
-          <line>37</line>
-          <properties class="org.platform_expertise_medicle.DAO.DemandeExpertiseDAO" method="findEnAttenteBySpecialisteId">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="23" />
+          <url>file://$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp</url>
+          <line>67</line>
+          <option name="timeStamp" value="151" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
