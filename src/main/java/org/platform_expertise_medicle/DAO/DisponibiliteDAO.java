@@ -28,56 +28,6 @@ public class DisponibiliteDAO {
         }
     }
 
-    public void genererCreneauxJournee(MedecinSpecialiste specialiste, LocalDate date) {
-        EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-
-        try {
-            tx.begin();
-
-            TypedQuery<Long> countQuery = em.createQuery(
-                "SELECT COUNT(d) FROM Disponibilite d WHERE d.specialiste.id = :specId AND d.date = :date",
-                Long.class
-            );
-            countQuery.setParameter("specId", specialiste.getId());
-            countQuery.setParameter("date", date);
-            Long count = countQuery.getSingleResult();
-
-            if (count > 0) {
-                System.out.println("Des créneaux existent déjà pour cette date");
-                tx.rollback();
-                return;
-            }
-
-            LocalTime heureDebut = LocalTime.of(9, 0);
-            LocalTime heureFin = LocalTime.of(12, 0);
-
-            while (heureDebut.isBefore(heureFin)) {
-                LocalTime finCreneau = heureDebut.plusMinutes(30);
-
-                Disponibilite dispo = new Disponibilite();
-                dispo.setSpecialiste(specialiste);
-                dispo.setDate(date);
-                dispo.setHeureDebut(heureDebut);
-                dispo.setHeureFin(finCreneau);
-                dispo.setDisponible(true);
-
-                em.persist(dispo);
-
-                heureDebut = finCreneau;
-            }
-
-            tx.commit();
-            System.out.println("Créneaux générés pour le " + date);
-
-        } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            em.close();
-        }
-    }
-
     public List<Disponibilite> findBySpecialisteAndDate(Long specialisteId, LocalDate date) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {

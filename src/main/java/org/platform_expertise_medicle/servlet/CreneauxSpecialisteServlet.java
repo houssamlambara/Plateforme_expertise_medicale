@@ -68,23 +68,8 @@ public class CreneauxSpecialisteServlet extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        if ("generer".equals(action)) {
-            // Générer les créneaux pour une date
-            String dateStr = request.getParameter("date");
-
-            try {
-                LocalDate date = LocalDate.parse(dateStr);
-                MedecinSpecialiste specialiste = specialisteDAO.findById(user.getId());
-
-                if (specialiste != null) {
-                    disponibiliteDAO.genererCreneauxJournee(specialiste, date);
-                    request.getSession().setAttribute("success", "Créneaux générés avec succès pour le " + date);
-                }
-            } catch (Exception e) {
-                request.getSession().setAttribute("error", "Erreur lors de la génération des créneaux : " + e.getMessage());
-            }
-        } else if ("creer-manuel".equals(action)) {
-            // Créer un créneau manuel
+        if ("creer-manuel".equals(action)) {
+            // Créer un créneau
             String dateStr = request.getParameter("date");
             String heureDebutStr = request.getParameter("heureDebut");
             String heureFinStr = request.getParameter("heureFin");

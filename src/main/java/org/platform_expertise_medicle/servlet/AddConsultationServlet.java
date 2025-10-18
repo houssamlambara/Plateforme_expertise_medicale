@@ -93,12 +93,13 @@ public class AddConsultationServlet extends HttpServlet {
             String motif = request.getParameter("motif");
             String observations = request.getParameter("observations");
             String priorite = request.getParameter("priorite");
+            String typeConsultation = request.getParameter("typeConsultation"); // "simple" ou "specialiste"
 
             // Récupération des actes techniques
             String[] actesNoms = request.getParameterValues("acteNom[]");
             String[] actesPrix = request.getParameterValues("actePrix[]");
 
-            // Stocker toutes les données en session et rediriger vers la sélection de spécialiste
+            // Stocker toutes les données en session
             session.setAttribute("patientIdForConsultation", patientIdStr);
             session.setAttribute("consultationSymptomes", symptomes);
             session.setAttribute("consultationDiagnostic", diagnostic);
@@ -109,7 +110,15 @@ public class AddConsultationServlet extends HttpServlet {
             session.setAttribute("actesNoms", actesNoms);
             session.setAttribute("actesPrix", actesPrix);
 
-            response.sendRedirect(request.getContextPath() + "/generaliste/specialiste-creneau?patientId=" + patientIdStr);
+            // Rediriger selon le type de consultation
+            if ("specialiste".equals(typeConsultation)) {
+                // Rediriger vers la sélection de spécialiste et créneau
+                response.sendRedirect(request.getContextPath() + "/generaliste/specialiste-creneau?patientId=" + patientIdStr);
+            } else {
+                // Créer une consultation simple directement (sans spécialiste)
+                // On utilise le même servlet mais sans spécialiste
+                response.sendRedirect(request.getContextPath() + "/generaliste/specialiste-creneau?patientId=" + patientIdStr + "&type=simple");
+            }
 
         } catch (Exception e) {
             request.setAttribute("error", "Erreur : " + e.getMessage());
