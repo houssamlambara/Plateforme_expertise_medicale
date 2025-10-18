@@ -133,4 +133,33 @@ public class Consultation {
     public void setDemandesExpertise(List<DemandeExpertise> demandesExpertise) {
         this.demandesExpertise = demandesExpertise;
     }
+
+    // Stream API / Lambda : Calcul du coût total des actes techniques
+    public double calculerCoutActesTechniques() {
+        return actesTechniques.stream()
+                .mapToDouble(acte -> acte.getPrix().doubleValue())
+                .sum();
+    }
+
+    // Coût de la consultation de base (fixe)
+    public static final double COUT_CONSULTATION_BASE = 150.0;
+
+    // Calcul du coût total : Consultation + Actes techniques
+    public double calculerCoutTotal() {
+        double coutBase = COUT_CONSULTATION_BASE;
+        double coutActes = calculerCoutActesTechniques();
+        return coutBase + coutActes;
+    }
+
+    // Calcul du coût total incluant l'expertise (si spécialiste assigné)
+    public double calculerCoutTotalAvecExpertise() {
+        double coutBase = calculerCoutTotal();
+
+        // Si un spécialiste est assigné, ajouter son tarif
+        if (medecinSpecialiste != null && medecinSpecialiste.getTarif() != null) {
+            return coutBase + medecinSpecialiste.getTarif();
+        }
+
+        return coutBase;
+    }
 }

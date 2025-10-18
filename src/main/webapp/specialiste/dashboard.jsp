@@ -39,13 +39,13 @@
                class="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
                 Expertises en attente
             </a>
+            <a href="<%= request.getContextPath() %>/specialiste/creneaux"
+               class="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
+                Gérer mes créneaux
+            </a>
             <a href="<%= request.getContextPath() %>/specialiste/mes-expertises"
                class="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
                 Mes Expertises
-            </a>
-            <a href="<%= request.getContextPath() %>/specialiste/historique"
-               class="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-4 rounded-lg text-center font-semibold hover:shadow-lg transform hover:-translate-y-1 transition">
-                Historique
             </a>
         </div>
     </div>

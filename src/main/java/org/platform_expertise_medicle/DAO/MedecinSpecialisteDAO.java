@@ -30,4 +30,32 @@ public class MedecinSpecialisteDAO {
             em.close();
         }
     }
+
+    // Stream API : Filtrer les spécialistes par spécialité
+    public List<MedecinSpecialiste> findBySpecialite(String specialite) {
+        return findAll().stream()
+                .filter(specialiste -> specialiste.getSpecialite() != null
+                        && specialiste.getSpecialite().equalsIgnoreCase(specialite))
+                .toList();
+    }
+
+    // Stream API : Filtrer les spécialistes par spécialité et trier par tarif
+    public List<MedecinSpecialiste> findBySpecialiteOrderByTarif(String specialite) {
+        return findAll().stream()
+                .filter(specialiste -> specialiste.getSpecialite() != null
+                        && specialiste.getSpecialite().equalsIgnoreCase(specialite))
+                .sorted((s1, s2) -> {
+                    Double tarif1 = s1.getTarif() != null ? s1.getTarif() : 0.0;
+                    Double tarif2 = s2.getTarif() != null ? s2.getTarif() : 0.0;
+                    return Double.compare(tarif1, tarif2);
+                })
+                .toList();
+    }
+
+    // Stream API : Filtrer les spécialistes disponibles (avec tarif défini)
+    public List<MedecinSpecialiste> findDisponibles() {
+        return findAll().stream()
+                .filter(specialiste -> specialiste.getTarif() != null && specialiste.getTarif() > 0)
+                .toList();
+    }
 }

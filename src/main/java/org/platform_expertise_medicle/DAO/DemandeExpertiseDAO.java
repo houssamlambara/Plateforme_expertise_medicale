@@ -70,4 +70,64 @@ public class DemandeExpertiseDAO {
             em.close();
         }
     }
+
+    // Récupérer toutes les demandes d'expertise
+    public List<DemandeExpertise> findAll() {
+        EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<DemandeExpertise> query = em.createQuery(
+                    "SELECT d FROM DemandeExpertise d",
+                    DemandeExpertise.class
+            );
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    // Stream API : Filtrer les demandes par statut
+    public List<DemandeExpertise> findByStatut(StatutConsultation statut) {
+        return findAll().stream()
+                .filter(demande -> demande.getStatut() == statut)
+                .toList();
+    }
+
+    // Stream API : Filtrer les demandes par priorité
+    public List<DemandeExpertise> findByPriorite(String priorite) {
+        return findAll().stream()
+                .filter(demande -> demande.getPriorite() != null
+                        && demande.getPriorite().equalsIgnoreCase(priorite))
+                .toList();
+    }
+
+    // Stream API : Filtrer les demandes par statut ET priorité
+    public List<DemandeExpertise> findByStatutAndPriorite(StatutConsultation statut, String priorite) {
+        return findAll().stream()
+                .filter(demande -> demande.getStatut() == statut)
+                .filter(demande -> demande.getPriorite() != null
+                        && demande.getPriorite().equalsIgnoreCase(priorite))
+                .toList();
+    }
+
+    // Stream API : Trier les demandes par priorité (Urgente > Normale > Basse)
+    public List<DemandeExpertise> findAllOrderByPriorite() {
+        return findAll().stream()
+                .sorted((d1, d2) -> {
+                    int priority1 = getPriorityValue(d1.getPriorite());
+                    int priority2 = getPriorityValue(d2.getPriorite());
+                    return Integer.compare(priority2, priority1); // Ordre décroissant
+                })
+                .toList();
+    }
+
+    // Méthode helper pour trier par priorité
+    private int getPriorityValue(String priorite) {
+        if (priorite == null) return 0;
+        return switch (priorite.toLowerCase()) {
+            case "urgente" -> 3;
+            case "normale" -> 2;
+            case "basse" -> 1;
+            default -> 0;
+        };
+    }
 }

@@ -12,10 +12,12 @@
     <list default="true" id="dea15ad3-62b8-4f5d-b811-38dbd65d1fe8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/PatientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/PatientDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/TestApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/TestApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/MedecinSpecialisteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/MedecinSpecialisteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/MedecinSpecialiste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/MedecinSpecialiste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +238,7 @@
       <workItem from="1760645402167" duration="32000" />
       <workItem from="1760645494873" duration="7000" />
       <workItem from="1760645797846" duration="19533000" />
-      <workItem from="1760743618729" duration="4998000" />
+      <workItem from="1760743618729" duration="9944000" />
     </task>
     <servers />
   </component>
