@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
  */
 public class SigneVitauxTest {
 
-    /**
-     * Test 1 : Vérifie que la méthode getFormattedDate() formate correctement la date
-     */
+
     @Test
     public void testFormatageDate() {
         // ARRANGE
@@ -29,10 +27,7 @@ public class SigneVitauxTest {
                     "La date devrait être formatée en 'dd/MM/yyyy HH:mm'");
     }
 
-    /**
-     * Test 2 : Vérifie que la méthode getFormattedDate() retourne une chaîne vide
-     * quand la date est nulle
-     */
+
     @Test
     public void testFormatageDateNulle() {
         // ARRANGE

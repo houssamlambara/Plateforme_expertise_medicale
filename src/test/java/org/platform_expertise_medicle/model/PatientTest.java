@@ -10,9 +10,7 @@ import java.util.Date;
  */
 public class PatientTest {
 
-    /**
-     * Test 1 : Vérifie que le constructeur crée bien un patient avec toutes les informations
-     */
+
     @Test
     public void testCreationPatient() {
         // ARRANGE (Préparer les données)
@@ -23,10 +21,10 @@ public class PatientTest {
         String telephone = "0612345678";
         String adresse = "123 Rue de Paris, 75001 Paris";
 
-        // ACT (Exécuter l'action à tester)
+        // Exécuter l'action à tester
         Patient patient = new Patient(nom, prenom, dateNaissance, numSecu, telephone, adresse);
 
-        // ASSERT (Vérifier les résultats)
+        // Vérifier les résultats
         assertEquals(nom, patient.getNom(), "Le nom du patient devrait être 'Dupont'");
         assertEquals(prenom, patient.getPrenom(), "Le prénom du patient devrait être 'Jean'");
         assertEquals(dateNaissance, patient.getDateNaissance(), "La date de naissance devrait correspondre");
