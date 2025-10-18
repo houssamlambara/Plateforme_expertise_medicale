@@ -10,11 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dea15ad3-62b8-4f5d-b811-38dbd65d1fe8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/ConsultationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/ConsultationDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/PatientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/PatientDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/TestApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/TestApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +74,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.TestApp.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -104,7 +106,20 @@
       </map>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.11">
+    <configuration name="TestApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.platform_expertise_medicle.TestApp" />
+      <module name="Platform_expertise_medicale" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.platform_expertise_medicle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 11.0.11" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.11" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -192,6 +207,11 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestApp" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -216,7 +236,7 @@
       <workItem from="1760645402167" duration="32000" />
       <workItem from="1760645494873" duration="7000" />
       <workItem from="1760645797846" duration="19533000" />
-      <workItem from="1760743618729" duration="2423000" />
+      <workItem from="1760743618729" duration="4998000" />
     </task>
     <servers />
   </component>

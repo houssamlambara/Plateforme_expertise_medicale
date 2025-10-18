@@ -6,6 +6,7 @@ import jakarta.persistence.TypedQuery;
 import org.platform_expertise_medicle.model.MedecinGeneraliste;
 import org.platform_expertise_medicle.model.User;
 import org.platform_expertise_medicle.util.JpaUtil;
+import org.platform_expertise_medicle.util.PasswordUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,10 @@ public class UserDAO {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
             em.getTransaction().begin();
+            // Hacher le mot de passe avant de sauvegarder (seulement si ce n'est pas déjà haché)
+            if (user.getMotDePasse() != null && !user.getMotDePasse().startsWith("$2a$")) {
+                user.setMotDePasse(PasswordUtil.hashPassword(user.getMotDePasse()));
+            }
             if (user.getId() == 0) {
                 em.persist(user);
             } else {
@@ -105,7 +110,8 @@ public class UserDAO {
         Optional<User> userOpt = findByEmail(email);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
-            return user.getMotDePasse().equals(password);
+            // Utiliser BCrypt pour vérifier le mot de passe
+            return PasswordUtil.checkPassword(password, user.getMotDePasse());
         }
         return false;
     }
