@@ -14,12 +14,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/ConsultationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/ConsultationDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/DAO/DemandeExpertiseDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/Consultation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/DemandeExpertise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/model/DemandeExpertise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/AddConsultationServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/DemanderSpecialisteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/DemanderSpecialisteServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/SpecialisteDashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/SpecialisteDashboardServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/UpdateConsultationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/platform_expertise_medicle/servlet/UpdateConsultationServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +77,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 11.0.11.executor": "Run",
+    "Tomcat Server.Tomcat 11.0.11.executor": "Debug",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -92,6 +87,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -219,22 +215,12 @@
       <workItem from="1760515446654" duration="23027000" />
       <workItem from="1760645402167" duration="32000" />
       <workItem from="1760645494873" duration="7000" />
-      <workItem from="1760645797846" duration="18142000" />
+      <workItem from="1760645797846" duration="19533000" />
+      <workItem from="1760743618729" duration="2423000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/specialiste/dashboard.jsp</url>
-          <line>67</line>
-          <option name="timeStamp" value="151" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

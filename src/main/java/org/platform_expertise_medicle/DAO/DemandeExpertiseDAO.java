@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DemandeExpertiseDAO {
 
-    // 🔹 Trouver un spécialiste par email
+    // Trouver un spécialiste par email
     public MedecinSpecialiste findSpecialisteByEmail(String email) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
@@ -30,7 +30,7 @@ public class DemandeExpertiseDAO {
         }
     }
 
-    // 🔹 Trouver un spécialiste par ID
+    // Trouver un spécialiste par ID
     public MedecinSpecialiste findSpecialisteById(long id) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
@@ -42,20 +42,20 @@ public class DemandeExpertiseDAO {
 
     public List<Consultation> findEnAttenteBySpecialisteId(long specialisteId) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
-       try {
+        try {
             TypedQuery<Consultation> query = em.createQuery(
-                    "SELECT c FROM Consultation c where c.statut = :statut and c.medecinSpecialiste.id=:specId", Consultation.class
+                    "SELECT DISTINCT c FROM Consultation c JOIN c.demandesExpertise d WHERE d.specialiste.id = :specId AND c.statut = :statut",
+                    Consultation.class
             );
             query.setParameter("specId", specialisteId);
             query.setParameter("statut", StatutConsultation.EN_ATTENTE_AVIS_SPECIALISTE);
             return query.getResultList();
         } finally {
-
-          em.close();
-      }
+            em.close();
+        }
     }
 
-    // 🔹 Sauvegarder une demande
+    // Sauvegarder une demande
     public void save(DemandeExpertise demande) {
         EntityManager em = JpaUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -63,8 +63,6 @@ public class DemandeExpertiseDAO {
             tx.begin();
             em.persist(demande);
             tx.commit();
-            System.out.println("DemandeExpertise persistée en base pour le spécialiste ID=" +
-                    (demande.getSpecialiste() != null ? demande.getSpecialiste().getId() : "NULL"));
         } catch (Exception e) {
             if (tx.isActive()) tx.rollback();
             e.printStackTrace();

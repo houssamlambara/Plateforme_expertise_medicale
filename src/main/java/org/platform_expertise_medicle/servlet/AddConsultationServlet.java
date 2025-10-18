@@ -121,26 +121,20 @@ public class AddConsultationServlet extends HttpServlet {
                     .orElseThrow(() -> new RuntimeException("Médecin généraliste introuvable."));
             consultation.setGeneraliste(generaliste);
 
-            // 🔹 Persister consultation AVANT la demande
-            consultationDAO.save(consultation);
+            // Récupérer un spécialiste disponible
+            List<MedecinSpecialiste> specialistes = specialisteDAO.findAll();
 
-            // 🔹 Assigner le spécialiste unique et créer demande d’expertise
-            MedecinSpecialiste specialiste = specialisteDAO.findById(1L); // ID du spécialiste
-            if (specialiste != null) {
+            MedecinSpecialiste specialiste = null;
+            if (!specialistes.isEmpty()) {
+                specialiste = specialistes.get(0);
                 consultation.setMedecinSpecialiste(specialiste);
                 consultation.setStatut(StatutConsultation.EN_ATTENTE_AVIS_SPECIALISTE);
-                consultationDAO.update(consultation); // mise à jour du statut et spécialiste
-
-                DemandeExpertise demande = new DemandeExpertise();
-                demande.setConsultation(consultation);
-                demande.setSpecialiste(specialiste);
-                demande.setStatut(StatutConsultation.EN_ATTENTE_AVIS_SPECIALISTE);
-                demande.setQuestion(consultation.getMotif());
-                demande.setPriorite(consultation.getPriorite());
-                demandeDAO.save(demande);
             }
 
-            // 🔹 Mettre à jour le dernier signe vital
+            // Sauvegarder la consultation (la demande d'expertise sera créée automatiquement)
+            consultationDAO.save(consultation);
+
+            // Mettre à jour le dernier signe vital
             SigneVitaux dernierSigne = signeVitauxDAO.findLastByPatientId(patientId);
             if (dernierSigne != null) {
                 dernierSigne.setStatut("TRAITE");

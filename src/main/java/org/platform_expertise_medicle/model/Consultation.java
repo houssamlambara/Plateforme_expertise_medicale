@@ -53,6 +53,9 @@ public class Consultation {
     @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ActeTechnique> actesTechniques = new ArrayList<>();
 
+    @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<DemandeExpertise> demandesExpertise = new ArrayList<>();
+
     public Consultation() {
         this.dateConsultation = LocalDateTime.now();
         this.statut = StatutConsultation.EN_COURS;
@@ -121,5 +124,13 @@ public class Consultation {
 
     public void setPriorite(String priorite) {
         this.priorite = priorite;
+    }
+
+    public List<DemandeExpertise> getDemandesExpertise() {
+        return demandesExpertise;
+    }
+
+    public void setDemandesExpertise(List<DemandeExpertise> demandesExpertise) {
+        this.demandesExpertise = demandesExpertise;
     }
 }

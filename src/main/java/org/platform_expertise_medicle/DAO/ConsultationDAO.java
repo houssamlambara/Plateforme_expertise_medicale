@@ -6,8 +6,6 @@ import jakarta.persistence.TypedQuery;
 import org.platform_expertise_medicle.enums.StatutConsultation;
 import org.platform_expertise_medicle.model.Consultation;
 import org.platform_expertise_medicle.model.DemandeExpertise;
-import org.platform_expertise_medicle.model.MedecinGeneraliste;
-import org.platform_expertise_medicle.model.MedecinSpecialiste;
 import org.platform_expertise_medicle.util.JpaUtil;
 
 import java.util.List;
@@ -21,22 +19,21 @@ public class ConsultationDAO {
         try {
             transaction.begin();
 
-            // 1️⃣ On sauvegarde la consultation
+            // Sauvegarde de la consultation
             em.persist(consultation);
 
-            // 2️⃣ Si la consultation est destinée à un spécialiste → on crée la demande
+            // Si un spécialiste est assigné, créer automatiquement la demande d'expertise
             if (consultation.getMedecinSpecialiste() != null) {
                 DemandeExpertise demande = new DemandeExpertise();
                 demande.setConsultation(consultation);
                 demande.setSpecialiste(consultation.getMedecinSpecialiste());
                 demande.setStatut(StatutConsultation.EN_ATTENTE_AVIS_SPECIALISTE);
                 demande.setPriorite(consultation.getPriorite());
-                demande.setQuestion("Demande d'avis du généraliste"); // tu peux personnaliser
+                demande.setQuestion(consultation.getMotif() != null ? consultation.getMotif() : "Demande d'avis du généraliste");
                 em.persist(demande);
             }
 
             transaction.commit();
-            System.out.println("Consultation et demande d'expertise enregistrées avec succès.");
         } catch (Exception e) {
             if (transaction.isActive()) transaction.rollback();
             e.printStackTrace();
